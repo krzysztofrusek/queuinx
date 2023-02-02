@@ -118,7 +118,7 @@ def MapFeatures(map_flow_fn: Callable, map_queue_fn: Callable):
         map_queue_fn = identity
 
     def _ApplyModel(network: Network) -> Network:
-        return network._replace(queues=map_queue_fn(network.queues),
+        return network.replace(queues=map_queue_fn(network.queues),
                                 flows=map_flow_fn(network.flows)
                                 )
 
