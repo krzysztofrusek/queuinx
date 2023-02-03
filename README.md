@@ -11,6 +11,10 @@ The API if designed to follow Jraph.
 The use of JAX a machine learning framework as the basis for the implementation allows the use of 
 advanced computational tool like differentiable programming, compilation or support for accelerator.
 
+## Instalation
+
+`pip install git+https://github.com/krzysztofrusek/queuinx.git`
+
 **If you decide to apply the concepts presented or base on the provided code, please do refer our paper.**
 
 ```
