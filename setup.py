@@ -23,12 +23,9 @@ setup(
     long_description_content_type='text/markdown',
     author_email='krussek@gmail.com',
     keywords='jax graph neural networks python machine learning queuing theory buffer networking',
-    packages=find_namespace_packages(exclude=['*_test.py']),
+    #packages=find_namespace_packages(exclude=['*_test.py']),
     python_requires='>=3.10',
-    install_requires=[
-        'jax>=0.3.25',
-        'chex~=0.1.5'
-    ],
+    install_requires=list(open('requirements.txt')),
     extras_require={'examples': ['jaxopt'],
                     },
     classifiers=[
