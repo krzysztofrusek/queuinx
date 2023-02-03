@@ -79,7 +79,7 @@ class UtilTestCase(unittest.TestCase):
                               n_queues=4,
                               n_routes=8,
                               n_nets=3)
-        apply_model = FiniteApproximationJackson()
+        apply_model = FiniteApproximationJackson(10)
         n = apply_model(p)
         ...
 

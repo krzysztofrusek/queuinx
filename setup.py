@@ -28,6 +28,7 @@ setup(
     install_requires=list(open('requirements.txt')),
     extras_require={'examples': ['jaxopt'],
                     },
+    packages=['queuinx'],
     classifiers=[
         'Development Status :: 3 - Alpha',
         'Environment :: Console',

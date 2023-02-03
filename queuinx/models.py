@@ -14,7 +14,6 @@
 
 """A library of RouteNet based models."""
 
-import functools as ft
 from typing import Tuple, Callable, Any, Optional
 
 import chex
@@ -191,11 +190,14 @@ class QoS:
 def Readout_mm1b(buffer_upper_bound: int) -> QueuingModelStep:
     @ragged
     def _qos_scaner(flow: QoS, queue: FiniteFifo) -> Tuple[QoS, QoS]:
-        dist_fn = ft.partial(mm1b.delay_distribution, buffer_upper_bound=buffer_upper_bound)
-        q = jax.vmap(dist_fn)(queue.arrivals, queue.service_rate, queue.b)
+        @jax.vmap
+        def delay_jitter_fn(a,mu,b):
+            q = mm1b.delay_distribution(a,mu,b, buffer_upper_bound)
+            return q.mean(),q.variance()
+        m,v = delay_jitter_fn(queue.arrivals, queue.service_rate, queue.b)
         qos = flow.replace(loss=flow.loss * queue.pasprob,
-                           delay=flow.delay + q.mean(),
-                           jitter=flow.jitter + q.variance()
+                           delay=flow.delay + m,
+                           jitter=flow.jitter + v
                            )
         return qos, flow
 
