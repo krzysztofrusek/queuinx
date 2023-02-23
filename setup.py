@@ -26,9 +26,9 @@ setup(
     #packages=find_namespace_packages(exclude=['*_test.py']),
     python_requires='>=3.10',
     install_requires=list(open('requirements.txt')),
-    extras_require={'examples': ['jaxopt','jaxopt.queuing_theory'],
+    extras_require={'examples': ['jaxopt'],
                     },
-    packages=['queuinx'],
+    packages=['queuinx','queuinx.queuing_theory'],
     classifiers=[
         'Development Status :: 3 - Alpha',
         'Environment :: Console',
