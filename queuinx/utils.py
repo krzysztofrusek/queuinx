@@ -12,7 +12,7 @@
 #    See the License for the specific language governing permissions and
 #    limitations under the License.
 
-from functools import wraps
+from functools import wraps,partial
 from typing import Sequence
 
 import chex
@@ -26,9 +26,45 @@ from jax.tree_util import tree_map
 from queuinx.network import Network
 
 
+def argsort(seq, reverse=False):
+    # http://stackoverflow.com/questions/3071415/efficient-method-to-calculate-the-rank-vector-of-a-list-in-python
+    return sorted(range(len(seq)), key=seq.__getitem__, reverse=reverse)
+
 def maybe_raise_on_interfaces(*nets):
     if not (all(n.interface is None for n in nets) and all(n.n_interfaces is None for n in nets)):
         raise NotImplemented("Interface are not supported in this version")
+
+
+@partial(jax.jit, static_argnums=2)
+def _scatter(t: chex.ArrayTree, dims: tuple, shape: chex.Shape) -> chex.ArrayTree:
+    """ Scatter pytree into a matrix of given shape. Missing values are filled with ``jnp.nan``
+
+    :param t: A (nested) structure of array
+    :param dims: n arrays representing coordinates
+    :param shape: Shape of the target matrix
+    :return: Scattered pytree of the same structure as :param t:
+    """
+
+    def _board_fn(x):
+        board = jnp.full(shape=shape, fill_value=jnp.nan, dtype=x.dtype)
+        board = board.at[dims].set(x)
+        return board
+
+    boards = tree.tree_map(_board_fn, t)
+
+    return boards
+
+
+
+
+@jax.jit
+def _flatten(t: chex.ArrayTree, dims: tuple):
+    """ Reverts scatter operation
+
+    :param b: Pytree of matrix
+    :return:
+    """
+    return tree.tree_map(lambda x: x[dims], t)
 
 
 def batch(nets: Sequence[Network]) -> Network:

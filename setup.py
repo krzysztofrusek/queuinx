@@ -28,7 +28,11 @@ setup(
     install_requires=list(open('requirements.txt')),
     extras_require={'examples': ['jaxopt'],
                     },
-    packages=['queuinx','queuinx.queuing_theory'],
+    packages=['queuinx',
+              'queuinx.queuing_theory',
+              'queuinx.experimental',
+              'queuinx.experimental.queuing_theory'
+              ],
     classifiers=[
         'Development Status :: 3 - Alpha',
         'Environment :: Console',

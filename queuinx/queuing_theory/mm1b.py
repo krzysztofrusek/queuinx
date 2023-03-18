@@ -14,15 +14,9 @@
 
 
 """Numerical procedures for M/M/1/b system"""
-import functools
 
 import chex
 import distrax
-import jax
-from tensorflow_probability.substrates import jax as tfp
-
-tfd = tfp.distributions
-tf = tfp.tf2jax
 import jax.numpy as jnp
 
 
@@ -64,15 +58,6 @@ class StationarySystem(distrax.Categorical):
         return self.log_prob(self._b)
 
 
-
-
-def stationary_distribution(rho: chex.Array, b: int) -> tfd.Distribution:
-    log_rho = jnp.log(rho)
-    i = jnp.arange(0, b + 1, dtype=rho.dtype)
-    return tfd.FiniteDiscrete(outcomes=i,
-                              logits=i * log_rho[..., jnp.newaxis])
-
-
 def delay_distribution(a: chex.Array, mu: chex.Array, b: chex.Array, buffer_upper_bound: int) -> distrax.Distribution:
     """Return delay distribution as :type distrax.Distribution:
 
@@ -88,76 +73,13 @@ def delay_distribution(a: chex.Array, mu: chex.Array, b: chex.Array, buffer_uppe
     logits = i * log_rho[..., jnp.newaxis]
     logits = jnp.where(i > b - 1, -jnp.inf, logits)
 
-    concentartion = jnp.arange(1, buffer_upper_bound + 1, dtype=log_rho.dtype)
-    concentartion = jnp.where(concentartion > b, 1, concentartion)
+    concentration = jnp.arange(1, buffer_upper_bound + 1, dtype=log_rho.dtype)
+    concentration = jnp.where(concentration > b, 1, concentration)
 
     return distrax.MixtureSameFamily(
         mixture_distribution=distrax.Categorical(
             logits=logits),
-        components_distribution=distrax.Gamma(concentartion,
-                                              jnp.broadcast_to(mu, concentartion.shape)
+        components_distribution=distrax.Gamma(concentration,
+                                              jnp.broadcast_to(mu, concentration.shape)
                                               )
     )
-
-
-def pi(i: chex.Array, a: chex.Array, mu: chex.Array, b: chex.Array):
-    rho = a / mu
-    return empty_system_probability(rho, b) * rho ** i
-
-
-def empty_system_probability(rho: chex.Array, b: chex.Array) -> chex.Array:
-    j = jnp.ones_like(rho)
-    return jnp.where(rho == 1, j / (j + b), (rho - 1) / (rho ** (b + 1) - 1))
-
-
-def full_system_probability(rho: chex.Array, b: chex.Array) -> chex.Array:
-    return empty_system_probability(rho, b) * rho ** b
-
-
-def delay_mean_and_varaince(a: chex.Array, mu: chex.Array, b: chex.Array):
-    rho = a / mu
-    pib = full_system_probability(rho, b)
-    pi0 = empty_system_probability(rho, b)
-    L = jnp.where(rho == 1, b / 2, pi0 * rho * (b * rho ** (b + 1) - (b + 1) * rho ** b + 1) / (rho - 1) ** 2)
-    W = L / ((1 - pib) * a)
-
-    # QT Jitter
-    EN = L / ((1 - pib) * rho)
-    ENpow2 = (-2 * b ** 2 * rho ** (b + 1) + b ** 2 * rho ** (b + 2) + b ** 2 * rho ** b - 2 * b * rho ** (
-            b + 1) + rho ** (b + 1) + 2 * b * rho ** b + rho ** b - rho - 1) / ((rho - 1) ** 2 * (rho ** b - 1))
-    ENpow2 = jnp.where(rho == 1, b * (1 + 2 * b) / 6, ENpow2)
-    VarN = ENpow2 - EN ** 2
-
-    tau = 1 / mu
-
-    # MM1b
-    Varx = tau ** 2
-    # true discrete
-    # Varx = 0.49/mu**2
-    Var = EN * Varx + tau ** 2 * VarN
-
-    return W, Var
-
-
-@functools.partial(jax.jit, static_argnums=3)
-@functools.partial(jax.vmap, in_axes=(0, 0, 0, None))
-def delay_mean_and_varaince_distrax(a: chex.Array, mu: chex.Array, b: chex.Array, buffer_upper_bound: int):
-    qdist = delay_distribution(a, mu, b, buffer_upper_bound)
-    return qdist.mean(), qdist.variance()
-
-
-def log_mgf_1(t: chex.Array, i: chex.Array, a: chex.Array, mu: chex.Array, b: chex.Array):
-    rho = a / mu
-    return -jnp.log1p(t * rho ** i * (mu - a) / ((rho ** b - 1) * mu * mu))
-
-
-def log_mgf_1_v2(t: chex.Array, i: chex.Array, a: chex.Array, mu: chex.Array, b: chex.Array):
-    return jnp.log(mu / (mu - t * pi(i - 1, a, mu, b) / (1 - pi(b, a, mu, b))))
-
-
-def log_mgf(t: chex.Array, a: chex.Array, mu: chex.Array, b: chex.Array):
-    def _body(i, x):
-        return x + i * log_mgf_1_v2(t, i, a, mu, b)
-
-    one = jnp.ones_like(b)
-    return jax.lax.fori_loop(one, b + one, _body, 0)
