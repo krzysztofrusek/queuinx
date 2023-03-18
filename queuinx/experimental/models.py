@@ -15,12 +15,14 @@
 """Experimental models models."""
 
 from enum import Enum
+from functools import wraps
 from typing import Tuple, Optional
 
 import chex
 import jax
 import jax.numpy as jnp
 import jax.tree_util as tree
+from jaxopt import FixedPointIteration
 
 from queuinx import FiniteFifo, RouteNetStep, Network, QoS
 from queuinx.models import QueuingModelStep
@@ -76,11 +78,12 @@ def StepOverflow():
     return RouteNetStep(update_flow_fn=flow_scaner, update_queue_fn=update_queue, reducers=PacketFlow.reducer())
 
 
-def Readout_mm1()->QueuingModelStep:
+def Readout_mm1() -> QueuingModelStep:
     """
     Calculates QoS based on MM1 approximation
     :return: RouteNet step callable
     """
+
     @ragged
     def _qos_scaner(flow: QoS, queue: PacketQueue) -> Tuple[QoS, QoS]:
         @jax.vmap
@@ -105,7 +108,7 @@ def Readout_mm1()->QueuingModelStep:
     return apply
 
 
-def ApproximateScheduling(n_tos: int, buffer_upper_bound: int, interface_upper_bound: int)->QueuingModelStep:
+def ApproximateScheduling(n_tos: int, buffer_upper_bound: int, interface_upper_bound: int) -> QueuingModelStep:
     """
     Queuing model with scheduling.
 
@@ -147,3 +150,33 @@ def ApproximateScheduling(n_tos: int, buffer_upper_bound: int, interface_upper_b
         return cary_flow, flow.replace(weighted_plen=flow.rate * flow.plen)
 
     return RouteNetStep(flow_scaner, update_queue, PacketFlow.reducer())
+
+
+def FixedPoint(model, *args, **kwargs):
+    """
+    Wraps model to return a function computing fixed point solution
+    :param model: Model function i.e. this function should return a single step of routenet
+    :param args: list of arguments for `jaxopt.FixedPointIteration`
+    :param kwargs: dict of arguments for `jaxopt.FixedPointIteration`
+    :return:
+    """
+    @wraps(model)
+    def _Model(*model_args, **model_kwargs) -> Network:
+        def _fixedpoint(net: Network) -> Network:
+            step_fn = model(*model_args, **model_kwargs)
+
+            def T(x, params: Network):
+                params = params.replace(queues=params.queues.update_dynamic_fields(x))
+                y = step_fn(params)
+                return y.queues.get_dynamic_fields()
+
+            fpi = FixedPointIteration(fixed_point_fun=T, *args, **kwargs)
+            opt = fpi.run(net.queues.get_dynamic_fields(), net)
+
+            fix = net.replace(queues=net.queues.update_dynamic_fields(opt.params))
+
+            return fix
+
+        return _fixedpoint
+
+    return _Model

@@ -12,7 +12,7 @@
 #    See the License for the specific language governing permissions and
 #    limitations under the License.
 
-from functools import wraps
+from functools import wraps,partial
 from typing import Sequence
 
 import chex
@@ -35,7 +35,7 @@ def maybe_raise_on_interfaces(*nets):
         raise NotImplemented("Interface are not supported in this version")
 
 
-@ft.partial(jax.jit, static_argnums=2)
+@partial(jax.jit, static_argnums=2)
 def _scatter(t: chex.ArrayTree, dims: tuple, shape: chex.Shape) -> chex.ArrayTree:
     """ Scatter pytree into a matrix of given shape. Missing values are filled with ``jnp.nan``
 
