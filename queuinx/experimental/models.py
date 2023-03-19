@@ -63,7 +63,7 @@ class PacketQueue(FiniteFifo):
         return self.replace(arrivals=fields[0], pasprob=fields[1], b=fields[2], service_rate=fields[3])
 
 
-def StepOverflow():
+def StepOverflow()->QueuingModelStep:
     @jax.vmap
     def update_queue(queue: PacketQueue, flow: PacketFlow, interface, n_interfaces) -> PacketQueue:
         lr = basic.packet_loss_ratio(flow.rate / queue.speed)
@@ -160,6 +160,7 @@ def FixedPoint(model, *args, **kwargs):
     :param kwargs: dict of arguments for `jaxopt.FixedPointIteration`
     :return:
     """
+
     @wraps(model)
     def _Model(*model_args, **model_kwargs) -> Network:
         def _fixedpoint(net: Network) -> Network:
@@ -180,3 +181,17 @@ def FixedPoint(model, *args, **kwargs):
         return _fixedpoint
 
     return _Model
+
+
+def Serial(*fs: list[QueuingModelStep])->QueuingModelStep:
+    """ Serial combinator
+
+    :param fs: A list of step function
+    :return: A step function executing arguments in serial
+    """
+    def apply(net: Network) -> Network:
+        for f in fs:
+            net = f(net)
+        return net
+
+    return apply
