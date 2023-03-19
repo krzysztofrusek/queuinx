@@ -20,7 +20,7 @@ class FixedPointTestCase(unittest.TestCase):
 
 
 class SerialTestCase(unittest.TestCase):
-    def test_seria(self):
+    def test_serial(self):
         net = example()
         plus1 = MapFeatures(map_queue_fn=lambda x: jax.tree_util.tree_map(lambda x: x + 1, x),
                             map_flow_fn=None)
