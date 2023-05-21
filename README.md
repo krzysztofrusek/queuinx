@@ -1,4 +1,4 @@
-![logo](images/logo.svg)
+![logo](docs/source/_static/images/logo.svg)
 
 # Queuinx
 Queuinx is an implementation of some queuing theory results in JAX that is differentiable and accelerator friendly.

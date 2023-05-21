@@ -1,5 +1,5 @@
 
-Components
+Design
 ======
 
 Design is similar to [1]_

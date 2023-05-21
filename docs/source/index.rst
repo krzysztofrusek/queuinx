@@ -6,10 +6,17 @@
 Welcome to Queuinx's documentation!
 ===================================
 
+.. include:: README.md
+   :parser: markdown
+
 .. toctree::
-   :maxdepth: 2
+   :hidden:
    :caption: Contents:
+
    README.md
+   queuinx
+   design
+
 
 Indices and tables
 ==================
@@ -19,16 +26,8 @@ Indices and tables
 * :ref:`search`
 
 
-.. toctree::
-   :maxdepth: 2
 
-.. automodule:: queuinx
-   :members:
-   :imported-members:
 
-.. currentmodule:: queuinx
-
-.. autosummary::
 
 
 
