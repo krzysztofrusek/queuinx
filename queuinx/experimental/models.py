@@ -79,8 +79,8 @@ def StepOverflow():
 
 
 def Readout_mm1() -> QueuingModelStep:
-    """
-    Calculates QoS based on MM1 approximation
+    """Calculates QoS based on MM1 approximation
+
     :return: RouteNet step callable
     """
 
@@ -109,8 +109,7 @@ def Readout_mm1() -> QueuingModelStep:
 
 
 def ApproximateScheduling(n_tos: int, buffer_upper_bound: int, interface_upper_bound: int) -> QueuingModelStep:
-    """
-    Queuing model with scheduling.
+    """Queuing model with scheduling.
 
     :param n_tos: Maksimum number of types of service per queue group
     :param buffer_upper_bound: Statically know limit for all buffers
@@ -153,12 +152,13 @@ def ApproximateScheduling(n_tos: int, buffer_upper_bound: int, interface_upper_b
 
 
 def FixedPoint(model, *args, **kwargs):
-    """
-    Wraps model to return a function computing fixed point solution
+    """Wraps model to return a function computing fixed point solution
+
     :param model: Model function i.e. this function should return a single step of routenet
-    :param args: list of arguments for `jaxopt.FixedPointIteration`
-    :param kwargs: dict of arguments for `jaxopt.FixedPointIteration`
-    :return:
+    :param args: list of arguments for :class:`jaxopt.FixedPointIteration`
+    :param kwargs: dict of arguments for :class:`jaxopt.FixedPointIteration`
+
+    :return: A model computing fixed point the given model.
     """
     @wraps(model)
     def _Model(*model_args, **model_kwargs) -> Network:

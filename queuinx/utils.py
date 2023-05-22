@@ -13,7 +13,7 @@
 #    limitations under the License.
 
 from functools import wraps,partial
-from typing import Sequence
+from typing import Sequence, Callable
 
 import chex
 import jax
@@ -110,8 +110,8 @@ def _batch(nets: Sequence[Network], np_=np) -> Network:
 
 
 def unbatch(net: Network) -> list[Network]:
-    """
-    Returns a list of networks given a batched network.
+    """Returns a list of networks given a batched network.
+
     :param net: the batched network, which will be unbatched into a list of networks.
     """
     return _unbatch(net, np_=jnp)
@@ -251,12 +251,19 @@ def unpad_with_graphs(padded_net: Network) -> Network:
 
 @chex.dataclass
 class RaggedCarry:
+    """ Carry for variable length sequences. Svan function must be decorated with :func:`ragged` """
+
     carry: ArrayTree
     step: chex.Array
     n_step: chex.Array
 
 
-def ragged(f):
+def ragged(f:Callable):
+    """ Decorates scan function to make it compatible with :py:class:`RaggedCarry`
+
+    :param f: A scan function
+    :return: A function accepting :py:class:`RaggedCarry`
+    """
     @wraps(f)
     def wrapper(carry: RaggedCarry, x: ArrayTree) -> ArrayTree:
         out = f(carry.carry, x)

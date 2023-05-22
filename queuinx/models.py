@@ -81,6 +81,7 @@ def RouteNetStep(update_flow_fn: UpdateFlowFn, update_queue_fn: UpdateQueueFn,
 
 @chex.dataclass(frozen=True)
 class FiniteFifo:
+    """ Parameters and state of fine fifo buffer """
     b: chex.Array
     service_rate: chex.Array
     arrivals: chex.Array
@@ -96,6 +97,7 @@ class FiniteFifo:
 
 @chex.dataclass(frozen=True)
 class PoissonFlow:
+    """ Parameters and state Poisson arrival flow """
     @staticmethod
     def reducer():
         return PoissonFlow(rate=jax.ops.segment_sum)
