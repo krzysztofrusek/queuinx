@@ -18,7 +18,10 @@ sys.path.insert(0, os.path.abspath('../..'))
 # -- General configuration ---------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#general-configuration
 
-extensions = ['sphinx.ext.autodoc',   'sphinx.ext.autosummary','recommonmark']
+extensions = ['sphinx.ext.autodoc',
+              'sphinx.ext.autosummary',
+              'recommonmark',
+              'sphinx.ext.autodoc.typehints']
 
 templates_path = ['_templates']
 exclude_patterns = []
@@ -30,3 +33,5 @@ exclude_patterns = []
 
 html_theme = 'alabaster'
 html_static_path = ['_static']
+autodoc_typehints = 'none'
+source_suffix = ['.rst', '.md', '.ipynb']

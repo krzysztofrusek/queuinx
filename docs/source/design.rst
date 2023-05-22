@@ -10,7 +10,7 @@ Network is described using queues and flows with two key operations:
 - ``flow_reduce``
 
 Principle
-----
+--------
 
 Let hq and hf be the states of queues and flows.
 We assume
@@ -20,5 +20,5 @@ We assume
 
 
 Ref
-----
+--------
 .. [1]  Sadre, R., Haverkort, B.R. (2000). FiFiQueues: Fixed-Point Analysis of Queueing Networks with Finite-Buffer Stations. In: Haverkort, B.R., Bohnenkamp, H.C., Smith, C.U. (eds) Computer Performance Evaluation.Modelling Techniques and Tools. TOOLS 2000. Lecture Notes in Computer Science, vol 1786. Springer, Berlin, Heidelberg. https://doi.org/10.1007/3-540-46429-8_23
