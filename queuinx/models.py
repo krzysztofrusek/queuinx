@@ -30,13 +30,22 @@ QueueFeatures = FlowFeatures = ArrayTree
 UpdateQueueFn = Callable[[QueueFeatures, FlowFeatures, jnp.ndarray, jnp.ndarray], QueueFeatures]
 UpdateFlowFn = Callable[[FlowFeatures, QueueFeatures], Tuple[FlowFeatures, FlowFeatures]]
 QueuingModelStep = Callable[[Network], Network]
+Seq2SeqFn = Callable[[RaggedCarry, ArrayTree], Tuple[RaggedCarry, ArrayTree]]
 
 
-def RouteNetStep(update_flow_fn: UpdateFlowFn, update_queue_fn: UpdateQueueFn,
+def lax_scan_flow_update(update_flow_fn: UpdateFlowFn) -> Seq2SeqFn:
+    def _scan(carry, for_scan):
+        scan_carry, partial_flow = jax.lax.scan(update_flow_fn, carry, for_scan)
+        return scan_carry, partial_flow
+
+    return _scan
+
+
+def RouteNetStep(update_flow_fn: Seq2SeqFn, update_queue_fn: UpdateQueueFn,
                  reducers: Any) -> QueuingModelStep:
     """Returns a function that applies a step of configured model
 
-    :param update_flow_fn: function used to scan over the queues along a flow
+    :param update_flow_fn: function implementing scan like operation over the queues along a flow
     :param update_queue_fn: function used to update the queues
     :param reducers: A tree of callable used to reduce the flows
     :return: A function that applies a step of configured model
@@ -62,7 +71,8 @@ def RouteNetStep(update_flow_fn: UpdateFlowFn, update_queue_fn: UpdateQueueFn,
             n_step=lens,
             step=jnp.zeros_like(lens)
         )
-        scan_carry, partial_flow = jax.lax.scan(update_flow_fn, carry, for_scan)
+        # scan_carry, partial_flow = jax.lax.scan(update_flow_fn, carry, for_scan)
+        scan_carry, partial_flow = update_flow_fn(carry, for_scan)
         updated_flows = scan_carry.carry
 
         if update_queue_fn is None:
@@ -118,8 +128,8 @@ def MapFeatures(map_flow_fn: Callable, map_queue_fn: Callable):
 
     def _ApplyModel(network: Network) -> Network:
         return network.replace(queues=map_queue_fn(network.queues),
-                                flows=map_flow_fn(network.flows)
-                                )
+                               flows=map_flow_fn(network.flows)
+                               )
 
     return _ApplyModel
 
@@ -130,13 +140,9 @@ def BasicModel():
         """flow reduce
 
         :param queue: Previous state of a queue
-
         :param flow: Aggregated flow
-
         :param interface: Interface ids for collective update e.g. for scheduling
-
         :param n_interfaces: number of interfaces per graph
-
         :return: Updated queue
         """
         lr = basic.packet_loss_ratio(flow.rate / queue.service_rate)
@@ -145,7 +151,7 @@ def BasicModel():
                              pasprob=1. - lr
                              )
 
-    return RouteNetStep(update_flow_fn=flow_scaner, update_queue_fn=update_queue,
+    return RouteNetStep(update_flow_fn=lax_scan_flow_update(flow_scaner), update_queue_fn=update_queue,
                         reducers=PoissonFlow.reducer())
 
 
@@ -169,7 +175,7 @@ def FiniteApproximationJackson(buffer_upper_bound: int):
                              pasprob=1. - q.full_system_probability()
                              )
 
-    return RouteNetStep(flow_scaner, update_queue, PoissonFlow.reducer())
+    return RouteNetStep(lax_scan_flow_update(flow_scaner), update_queue, PoissonFlow.reducer())
 
 
 @chex.dataclass
@@ -188,13 +194,19 @@ class QoS:
 
 
 def Readout_mm1b(buffer_upper_bound: int) -> QueuingModelStep:
+    """Computes delay per path assuming `M/M/1/B` delay model
+
+    :param buffer_upper_bound:
+    :return: A step function performing computations.
+    """
     @ragged
     def _qos_scaner(flow: QoS, queue: FiniteFifo) -> Tuple[QoS, QoS]:
         @jax.vmap
-        def delay_jitter_fn(a,mu,b):
-            q = mm1b.delay_distribution(a,mu,b, buffer_upper_bound)
-            return q.mean(),q.variance()
-        m,v = delay_jitter_fn(queue.arrivals, queue.service_rate, queue.b)
+        def delay_jitter_fn(a, mu, b):
+            q = mm1b.delay_distribution(a, mu, b, buffer_upper_bound)
+            return q.mean(), q.variance()
+
+        m, v = delay_jitter_fn(queue.arrivals, queue.service_rate, queue.b)
         qos = flow.replace(loss=flow.loss * queue.pasprob,
                            delay=flow.delay + m,
                            jitter=flow.jitter + v
@@ -209,7 +221,7 @@ def Readout_mm1b(buffer_upper_bound: int) -> QueuingModelStep:
             loss=jnp.ones_like(zero)
 
         ))
-        qos_net = RouteNetStep(_qos_scaner, None, None)(net)
+        qos_net = RouteNetStep(lax_scan_flow_update(_qos_scaner), None, None)(net)
         return qos_net.replace(flows=qos_net.flows.replace(loss=1. - qos_net.flows.loss))
 
     return apply
