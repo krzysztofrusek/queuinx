@@ -69,6 +69,7 @@ class Network:
     def flow_lengths(self)->Array:
         """
         Dynamic length of each flow in the network
+
         :return: An array of flow lengths
         """
         sum_n_flows = jax.tree_util.tree_leaves(self.flows)[0].shape[0]
