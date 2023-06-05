@@ -25,7 +25,7 @@ import jax.tree_util as tree
 from jaxopt import FixedPointIteration
 
 from queuinx import FiniteFifo, RouteNetStep, Network, QoS
-from queuinx.models import QueuingModelStep
+from queuinx.models import QueuingModelStep,lax_scan_flow_update
 from queuinx.queuing_theory import basic, mm1, mm1b
 from queuinx.utils import ragged, _scatter, _flatten
 
@@ -75,7 +75,7 @@ def StepOverflow():
         cary_flow = flow.replace(rate=queue.pasprob * flow.rate)
         return cary_flow, flow
 
-    return RouteNetStep(update_flow_fn=flow_scaner, update_queue_fn=update_queue, reducers=PacketFlow.reducer())
+    return RouteNetStep(update_flow_fn=lax_scan_flow_update(flow_scaner), update_queue_fn=update_queue, reducers=PacketFlow.reducer())
 
 
 def Readout_mm1() -> QueuingModelStep:
@@ -102,7 +102,7 @@ def Readout_mm1() -> QueuingModelStep:
         net = net.replace(flows=QoS(delay=zero, jitter=zero, loss=jnp.ones_like(zero)
 
                                     ))
-        qos_net = RouteNetStep(_qos_scaner, None, None)(net)
+        qos_net = RouteNetStep(lax_scan_flow_update(_qos_scaner), None, None)(net)
         return qos_net.replace(flows=qos_net.flows.replace(loss=1. - qos_net.flows.loss))
 
     return apply
@@ -148,11 +148,12 @@ def ApproximateScheduling(n_tos: int, buffer_upper_bound: int, interface_upper_b
         cary_flow = flow.replace(rate=queue.pasprob * flow.rate)
         return cary_flow, flow.replace(weighted_plen=flow.rate * flow.plen)
 
-    return RouteNetStep(flow_scaner, update_queue, PacketFlow.reducer())
+    return RouteNetStep(lax_scan_flow_update(flow_scaner), update_queue, PacketFlow.reducer())
 
 
 def FixedPoint(model, *args, **kwargs):
     """Wraps model to return a function computing fixed point solution
+
 
     :param model: Model function i.e. this function should return a single step of routenet
     :param args: list of arguments for :class:`jaxopt.FixedPointIteration`
