@@ -15,7 +15,7 @@
 import unittest
 import jax
 import jax.numpy as jnp
-import mm1 as qt
+from queuinx.queuing_theory import mm1 as qt
 class TestCase(unittest.TestCase):
     def test_analytical(self):
         _lambda = 2.
