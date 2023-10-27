@@ -43,14 +43,9 @@ dependencies = [
     "distrax>=0.1.2",
     "jax>=0.3.25",
     "jaxlib>=0.3.25",
-    "numpy>=1.22.4",
-    "tensorflow-probability>=0.19",
+    "jaxopt>=0.5.5"
 ]
 
-[project.optional-dependencies]
-examples = [
-    "jaxopt",
-]
 
 [project.urls]
 Homepage = "https://github.com/krzysztofrusek/queuinx"
@@ -65,3 +60,6 @@ include = [
 
 [tool.hatch.envs.default]
 path='./venv'
+
+[tool.hatch.envs.default.scripts]
+test = "python -m unittest discover -p '*_test.py' {args}"

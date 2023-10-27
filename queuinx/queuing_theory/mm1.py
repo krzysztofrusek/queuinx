@@ -14,8 +14,6 @@
 
 import chex
 import distrax
-import tensorflow_probability.substrates.jax as tfp
-tfd = tfp.distributions
 
 def delay_distribution(a: chex.Array, mu: chex.Array) -> distrax.DistributionLike:
     """Return delay distribution in M/M/1 for customers who arrive and find the queue as a stationary process [1]_.
@@ -27,4 +25,5 @@ def delay_distribution(a: chex.Array, mu: chex.Array) -> distrax.DistributionLik
 
     .. [1] Harrison, P. G. (1993). "Response time distributions in queueing network models". Performance Evaluation of Computer and Communication Systems. Lecture Notes in Computer Science. Vol. 729. pp. 147–164.
     """
-    return tfd.Exponential(rate=mu-a)
+    # Exponential
+    return distrax.Gamma(concentration=1., rate=mu-a)

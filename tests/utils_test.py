@@ -41,7 +41,7 @@ class UtilTestCase(unittest.TestCase):
         lb = unbatch(b)
 
         eq = tree.tree_leaves(tree.tree_map(jnp.equal, le, lb))
-        tree.tree_map(lambda x: self.assertTrue(jnp.alltrue(x)), eq)
+        tree.tree_map(lambda x: self.assertTrue(jnp.all(x)), eq)
         ...
 
     def test_pad(self):
@@ -70,7 +70,7 @@ class UtilTestCase(unittest.TestCase):
 
         up = unpad_with_graphs(p)
         eq = tree.tree_map(jnp.equal, up, e)
-        tree.tree_map(lambda x: self.assertTrue(jnp.alltrue(x)), eq)
+        tree.tree_map(lambda x: self.assertTrue(jnp.all(x)), eq)
 
     def test_pad_model(self):
         e = example()
