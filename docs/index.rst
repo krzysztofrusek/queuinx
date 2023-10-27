@@ -6,14 +6,11 @@
 Welcome to Queuinx's documentation!
 ===================================
 
-.. include:: README.md
-   :parser: markdown
 
 .. toctree::
    :hidden:
    :caption: Contents:
 
-   README.md
    queuinx
    design
 

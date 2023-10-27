@@ -10,7 +10,7 @@ API
 .. currentmodule:: queuinx.queuing_theory
 
 Queuing theory
-==========
+==============
 
 MM1b
 -----------
@@ -26,7 +26,7 @@ MM1
    :imported-members:
 
 Basic(fluid)
------------
+------------
 
 .. automodule:: queuinx.queuing_theory.basic
    :members:
@@ -41,7 +41,7 @@ Utilities
 .. autosummary::
 
 Experimental
-==========
+============
 
 .. automodule:: queuinx.experimental.models
    :members:
