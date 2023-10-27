@@ -10,7 +10,7 @@ Network is described using queues and flows with two key operations:
 - ``flow_reduce``
 
 Principle
---------
+---------
 
 Let hq and hf be the states of queues and flows.
 We assume
