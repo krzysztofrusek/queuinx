@@ -1,7 +1,0 @@
-jax>=0.3.25
-jaxlib>=0.3.25
-chex>=0.1.5
-distrax>=0.1.2
-tensorflow-probability>=0.19
-numpy>=1.22.4
-jaxopt>=0.5.5
