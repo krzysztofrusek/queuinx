@@ -14,6 +14,9 @@ advanced computational tool like differentiable programming, compilation or supp
 ## Instalation
 
 `pip install git+https://github.com/krzysztofrusek/queuinx.git`
+ or from pypi
+
+`pip install queuinx`
 
 **If you decide to apply the concepts presented or base on the provided code, please do refer our paper.**
 
