@@ -34,7 +34,7 @@ exclude_patterns = []
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#options-for-html-output
 
 html_theme = 'sphinx_rtd_theme'
-github_url= "https://github.com/krzysztofrusek/queuinx",
+github_url= "https://github.com/krzysztofrusek/queuinx"
 
 # html_theme_options = {
 #     "use_repository_button": True,
