@@ -27,15 +27,18 @@ from queuinx.queuing_theory import basic, mm1b
 from queuinx.utils import ragged, RaggedCarry
 
 QueueFeatures = FlowFeatures = ArrayTree
-UpdateQueueFn = Callable[[QueueFeatures, FlowFeatures, jnp.ndarray, jnp.ndarray], QueueFeatures]
-UpdateFlowFn = Callable[[FlowFeatures, QueueFeatures], Tuple[FlowFeatures, FlowFeatures]]
+UpdateQueueFn = Callable[
+    [QueueFeatures, FlowFeatures, jnp.ndarray, jnp.ndarray], QueueFeatures]
+UpdateFlowFn = Callable[
+    [FlowFeatures, QueueFeatures], Tuple[FlowFeatures, FlowFeatures]]
 QueuingModelStep = Callable[[Network], Network]
 Seq2SeqFn = Callable[[RaggedCarry, ArrayTree], Tuple[RaggedCarry, ArrayTree]]
 
 
 def lax_scan_flow_update(update_flow_fn: UpdateFlowFn) -> Seq2SeqFn:
     def _scan(carry, for_scan):
-        scan_carry, partial_flow = jax.lax.scan(update_flow_fn, carry, for_scan)
+        scan_carry, partial_flow = jax.lax.scan(update_flow_fn, carry,
+                                                for_scan)
         return scan_carry, partial_flow
 
     return _scan
@@ -52,7 +55,8 @@ def RouteNetStep(update_flow_fn: Seq2SeqFn, update_queue_fn: UpdateQueueFn,
     """
 
     def _ApplyModel(network: Network) -> Network:
-        template = jax.tree_map(lambda x: jnp.zeros_like(x[1, ...]), network.queues)
+        template = jax.tree_map(lambda x: jnp.zeros_like(x[1, ...]),
+                                network.queues)
         lens = network.flow_lengths
         # See  https://github.com/deepmind/jraph/blob/51f5990104f7374492f8f3ea1cbc47feb411c69c/jraph/_src/models.py#L167
         sum_n_flows = tree.tree_leaves(network.flows)[0].shape[0]
@@ -61,10 +65,14 @@ def RouteNetStep(update_flow_fn: Seq2SeqFn, update_queue_fn: UpdateQueueFn,
         n_graph, max_path_length = network.max_path_length_mask.shape
 
         for_scan = jax.tree_map(
-            lambda x: jnp.broadcast_to(x, [s for s in [max_path_length, sum_n_flows] + [x.shape] if s]),
+            lambda x: jnp.broadcast_to(x, [s for s in
+                                           [max_path_length, sum_n_flows] + [
+                                               x.shape] if s]),
             template)
-        for_scan = jax.tree_map(lambda x, y: x.at[network.step, network.flow, ...].set(y[network.queue, ...]),
-                                for_scan, network.queues)
+        for_scan = jax.tree_map(
+            lambda x, y: x.at[network.step, network.flow, ...].set(
+                y[network.queue, ...]),
+            for_scan, network.queues)
 
         carry = RaggedCarry(
             carry=network.flows,
@@ -78,12 +86,18 @@ def RouteNetStep(update_flow_fn: Seq2SeqFn, update_queue_fn: UpdateQueueFn,
         if update_queue_fn is None:
             updated_queues = network.queues
         else:
-            selected = jax.tree_map(lambda x: x[network.step, network.flow, ...], partial_flow)
-            inflows = jax.tree_map(lambda x, f: f(x, network.queue, num_segments=sum_n_queues) if f else None, selected,
+            selected = jax.tree_map(
+                lambda x: x[network.step, network.flow, ...], partial_flow)
+            inflows = jax.tree_map(lambda x, f: f(x, network.queue,
+                                                  num_segments=sum_n_queues) if f else None,
+                                   selected,
                                    reducers)
-            updated_queues = update_queue_fn(network.queues, inflows, network.interface, network.n_interfaces)
+            updated_queues = update_queue_fn(network.queues, inflows,
+                                             network.interface,
+                                             network.n_interfaces)
 
-        new_network = network.replace(queues=updated_queues, flows=updated_flows)
+        new_network = network.replace(queues=updated_queues,
+                                      flows=updated_flows)
         return new_network
 
     return _ApplyModel
@@ -108,6 +122,7 @@ class FiniteFifo:
 @chex.dataclass(frozen=True)
 class PoissonFlow:
     """ Parameters and state Poisson arrival flow """
+
     @staticmethod
     def reducer():
         return PoissonFlow(rate=jax.ops.segment_sum)
@@ -116,7 +131,8 @@ class PoissonFlow:
 
 
 @ragged
-def flow_scaner(flow: PoissonFlow, queue: FiniteFifo) -> Tuple[PoissonFlow, PoissonFlow]:
+def flow_scaner(flow: PoissonFlow, queue: FiniteFifo) -> Tuple[
+    PoissonFlow, PoissonFlow]:
     cary_flow = flow.replace(rate=queue.pasprob * flow.rate)
     return cary_flow, flow
 
@@ -138,7 +154,8 @@ def MapFeatures(map_flow_fn: Callable, map_queue_fn: Callable):
 
 def BasicModel():
     @jax.vmap
-    def update_queue(queue: FiniteFifo, flow: PoissonFlow, interface, n_interfaces) -> FiniteFifo:
+    def update_queue(queue: FiniteFifo, flow: PoissonFlow, interface,
+                     n_interfaces) -> FiniteFifo:
         """flow reduce
 
         :param queue: Previous state of a queue
@@ -153,13 +170,15 @@ def BasicModel():
                              pasprob=1. - lr
                              )
 
-    return RouteNetStep(update_flow_fn=lax_scan_flow_update(flow_scaner), update_queue_fn=update_queue,
+    return RouteNetStep(update_flow_fn=lax_scan_flow_update(flow_scaner),
+                        update_queue_fn=update_queue,
                         reducers=PoissonFlow.reducer())
 
 
 def FiniteApproximationJackson(buffer_upper_bound: int):
     @jax.vmap
-    def update_queue(queue: FiniteFifo, flow: PoissonFlow, interface, n_interfaces) -> FiniteFifo:
+    def update_queue(queue: FiniteFifo, flow: PoissonFlow, interface,
+                     n_interfaces) -> FiniteFifo:
         """flow reduce
 
         :param queue: Previous state of a queue
@@ -172,12 +191,14 @@ def FiniteApproximationJackson(buffer_upper_bound: int):
 
         :return: Updated queue
         """
-        q = mm1b.StationarySystem(flow.rate / queue.service_rate, queue.b, buffer_upper_bound)
+        q = mm1b.StationarySystem(flow.rate / queue.service_rate, queue.b,
+                                  buffer_upper_bound)
         return queue.replace(arrivals=flow.rate,
                              pasprob=1. - q.full_system_probability()
                              )
 
-    return RouteNetStep(lax_scan_flow_update(flow_scaner), update_queue, PoissonFlow.reducer())
+    return RouteNetStep(lax_scan_flow_update(flow_scaner), update_queue,
+                        PoissonFlow.reducer())
 
 
 @chex.dataclass
@@ -201,6 +222,7 @@ def Readout_mm1b(buffer_upper_bound: int) -> QueuingModelStep:
     :param buffer_upper_bound:
     :return: A step function performing computations.
     """
+
     @ragged
     def _qos_scaner(flow: QoS, queue: FiniteFifo) -> Tuple[QoS, QoS]:
         @jax.vmap
@@ -223,7 +245,9 @@ def Readout_mm1b(buffer_upper_bound: int) -> QueuingModelStep:
             loss=jnp.ones_like(zero)
 
         ))
-        qos_net = RouteNetStep(lax_scan_flow_update(_qos_scaner), None, None)(net)
-        return qos_net.replace(flows=qos_net.flows.replace(loss=1. - qos_net.flows.loss))
+        qos_net = RouteNetStep(lax_scan_flow_update(_qos_scaner), None, None)(
+            net)
+        return qos_net.replace(
+            flows=qos_net.flows.replace(loss=1. - qos_net.flows.loss))
 
     return apply

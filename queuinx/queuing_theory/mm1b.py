@@ -21,11 +21,11 @@ import jax.numpy as jnp
 
 
 class StationarySystem(distrax.Categorical):
-    """
-    A Stationary distribution of system occupancy in M/M/1/b
+    """A Stationary distribution of system occupancy in M/M/1/b
     """
 
-    def __init__(self, rho: chex.Array, b: chex.Array, buffer_upper_bound: int):
+    def __init__(self, rho: chex.Array, b: chex.Array,
+                 buffer_upper_bound: int):
         self._b = b
         self._rho = rho
         self._b_up = buffer_upper_bound
@@ -58,7 +58,8 @@ class StationarySystem(distrax.Categorical):
         return self.log_prob(self._b)
 
 
-def delay_distribution(a: chex.Array, mu: chex.Array, b: chex.Array, buffer_upper_bound: int) -> distrax.Distribution:
+def delay_distribution(a: chex.Array, mu: chex.Array, b: chex.Array,
+                       buffer_upper_bound: int) -> distrax.Distribution:
     """Return delay distribution as :type distrax.Distribution:
 
     :param a: Arrival rate
@@ -80,6 +81,7 @@ def delay_distribution(a: chex.Array, mu: chex.Array, b: chex.Array, buffer_uppe
         mixture_distribution=distrax.Categorical(
             logits=logits),
         components_distribution=distrax.Gamma(concentration,
-                                              jnp.broadcast_to(mu, concentration.shape)
+                                              jnp.broadcast_to(mu,
+                                                               concentration.shape)
                                               )
     )

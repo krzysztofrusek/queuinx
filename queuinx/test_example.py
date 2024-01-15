@@ -43,6 +43,8 @@ def example() -> Network:
     flow, step, queue = jnp.where(R)
     n_flow, n_step, n_queue = jax.tree_map(lambda x: jnp.asarray(x), R.shape)
     n_route = jnp.array([len(flow)])
-    n = Network(queues=q, flows=tm, flow=flow, step=step, queue=queue, n_flows=n_flow[..., jnp.newaxis],
-                max_path_length_mask=jnp.ones((1, n_step)), n_queues=n_queue[..., jnp.newaxis], n_routes=n_route)
+    n = Network(queues=q, flows=tm, flow=flow, step=step, queue=queue,
+                n_flows=n_flow[..., jnp.newaxis],
+                max_path_length_mask=jnp.ones((1, n_step)),
+                n_queues=n_queue[..., jnp.newaxis], n_routes=n_route)
     return n

@@ -34,22 +34,17 @@ exclude_patterns = []
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#options-for-html-output
 
 html_theme = 'sphinx_rtd_theme'
-html_theme_options = {
-    "repository_url": "https://github.com/krzysztofrusek/queuinx",
-    "use_repository_button": True,
-    "use_download_button": False,
-}
+github_url= "https://github.com/krzysztofrusek/queuinx",
+
+# html_theme_options = {
+#     "use_repository_button": True,
+#     "use_download_button": False,
+# }
 
 html_static_path = ['_static']
 html_logo = "_static/images/logo.svg"
-autodoc_typehints = 'none'
+
 source_suffix = ['.rst', '.md', '.ipynb']
-
-# -- Options for autodoc ----------------------------------------------------
-# https://www.sphinx-doc.org/en/master/usage/extensions/autodoc.html#configuration
-
-# Automatically extract typehints when specified and place them in
-# descriptions of the relevant function/method.
 autodoc_typehints = "description"
 
 # Don't show class signature with the class' name.

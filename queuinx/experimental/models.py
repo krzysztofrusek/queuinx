@@ -25,7 +25,7 @@ import jax.tree_util as tree
 from jaxopt import FixedPointIteration
 
 from queuinx import FiniteFifo, RouteNetStep, Network, QoS
-from queuinx.models import QueuingModelStep,lax_scan_flow_update
+from queuinx.models import QueuingModelStep, lax_scan_flow_update
 from queuinx.queuing_theory import basic, mm1, mm1b
 from queuinx.utils import ragged, _scatter, _flatten
 
@@ -38,7 +38,8 @@ class PacketFlow:
 
     @staticmethod
     def reducer():
-        return PacketFlow(rate=jax.ops.segment_sum, plen=None, weighted_plen=jax.ops.segment_sum)
+        return PacketFlow(rate=jax.ops.segment_sum, plen=None,
+                          weighted_plen=jax.ops.segment_sum)
 
 
 class SchedulingPolicy(Enum):
@@ -60,22 +61,27 @@ class PacketQueue(FiniteFifo):
         return (self.arrivals, self.pasprob, self.b, self.service_rate)
 
     def update_dynamic_fields(self, fields: tuple):
-        return self.replace(arrivals=fields[0], pasprob=fields[1], b=fields[2], service_rate=fields[3])
+        return self.replace(arrivals=fields[0], pasprob=fields[1], b=fields[2],
+                            service_rate=fields[3])
 
 
 def StepOverflow():
     @jax.vmap
-    def update_queue(queue: PacketQueue, flow: PacketFlow, interface, n_interfaces) -> PacketQueue:
+    def update_queue(queue: PacketQueue, flow: PacketFlow, interface,
+                     n_interfaces) -> PacketQueue:
         lr = basic.packet_loss_ratio(flow.rate / queue.speed)
 
         return queue.replace(arrivals=flow.rate, pasprob=1. - lr)
 
     @ragged
-    def flow_scaner(flow: PacketFlow, queue: PacketQueue) -> Tuple[PacketFlow, PacketFlow]:
+    def flow_scaner(flow: PacketFlow, queue: PacketQueue) -> Tuple[
+        PacketFlow, PacketFlow]:
         cary_flow = flow.replace(rate=queue.pasprob * flow.rate)
         return cary_flow, flow
 
-    return RouteNetStep(update_flow_fn=lax_scan_flow_update(flow_scaner), update_queue_fn=update_queue, reducers=PacketFlow.reducer())
+    return RouteNetStep(update_flow_fn=lax_scan_flow_update(flow_scaner),
+                        update_queue_fn=update_queue,
+                        reducers=PacketFlow.reducer())
 
 
 def Readout_mm1() -> QueuingModelStep:
@@ -94,21 +100,26 @@ def Readout_mm1() -> QueuingModelStep:
             return delay, var
 
         m, v = delay_jitter_fn(queue.arrivals, queue.speed)
-        qos = flow.replace(loss=flow.loss * queue.pasprob, delay=flow.delay + m, jitter=flow.jitter + v)
+        qos = flow.replace(loss=flow.loss * queue.pasprob,
+                           delay=flow.delay + m, jitter=flow.jitter + v)
         return qos, flow
 
     def apply(net: Network) -> Network:
         zero = jnp.zeros(tree.tree_leaves(net.flows)[0].shape[0])
-        net = net.replace(flows=QoS(delay=zero, jitter=zero, loss=jnp.ones_like(zero)
+        net = net.replace(
+            flows=QoS(delay=zero, jitter=zero, loss=jnp.ones_like(zero)
 
-                                    ))
-        qos_net = RouteNetStep(lax_scan_flow_update(_qos_scaner), None, None)(net)
-        return qos_net.replace(flows=qos_net.flows.replace(loss=1. - qos_net.flows.loss))
+                      ))
+        qos_net = RouteNetStep(lax_scan_flow_update(_qos_scaner), None, None)(
+            net)
+        return qos_net.replace(
+            flows=qos_net.flows.replace(loss=1. - qos_net.flows.loss))
 
     return apply
 
 
-def ApproximateScheduling(n_tos: int, buffer_upper_bound: int, interface_upper_bound: int) -> QueuingModelStep:
+def ApproximateScheduling(n_tos: int, buffer_upper_bound: int,
+                          interface_upper_bound: int) -> QueuingModelStep:
     """Queuing model with scheduling.
 
     :param n_tos: Maksimum number of types of service per queue group
@@ -116,19 +127,24 @@ def ApproximateScheduling(n_tos: int, buffer_upper_bound: int, interface_upper_b
     :param interface_upper_bound:  Statically know limit for number of interfaces
     """
 
-    def update_queue(queue: PacketQueue, flow: PacketFlow, interface, n_interfaces) -> PacketQueue:
+    def update_queue(queue: PacketQueue, flow: PacketFlow, interface,
+                     n_interfaces) -> PacketQueue:
         del n_interfaces
 
-        pi_0 = jax.vmap(lambda q: mm1b.StationarySystem(q.arrivals / q.service_rate, q.b,
-                                                        buffer_upper_bound).empty_system_probability())(queue)
+        pi_0 = jax.vmap(
+            lambda q: mm1b.StationarySystem(q.arrivals / q.service_rate, q.b,
+                                            buffer_upper_bound).empty_system_probability())(
+            queue)
 
         dims = (queue.priority, interface)
-        boards = _scatter(pi_0, dims=dims, shape=(n_tos, interface_upper_bound))
+        boards = _scatter(pi_0, dims=dims,
+                          shape=(n_tos, interface_upper_bound))
 
         state0 = jnp.ones(interface_upper_bound)
         _, sp_w = jax.lax.scan(lambda c, x: (c * x, c), state0, boards)
 
-        w = jnp.where(queue.policy == SchedulingPolicy.SP.value, _flatten(sp_w, dims=dims),
+        w = jnp.where(queue.policy == SchedulingPolicy.SP.value,
+                      _flatten(sp_w, dims=dims),
                       queue.w)
 
         avplen = flow.weighted_plen / flow.rate
@@ -138,17 +154,22 @@ def ApproximateScheduling(n_tos: int, buffer_upper_bound: int, interface_upper_b
         rho = flow.rate / service_rate
 
         pi_b = jax.vmap(
-            lambda x_rho, x_b: mm1b.StationarySystem(x_rho, x_b, buffer_upper_bound).full_system_probability())(rho,
-                                                                                                                buffer)
+            lambda x_rho, x_b: mm1b.StationarySystem(x_rho, x_b,
+                                                     buffer_upper_bound).full_system_probability())(
+            rho,
+            buffer)
 
-        return queue.replace(arrivals=flow.rate, pasprob=1. - pi_b, service_rate=service_rate, b=buffer)
+        return queue.replace(arrivals=flow.rate, pasprob=1. - pi_b,
+                             service_rate=service_rate, b=buffer)
 
     @ragged
-    def flow_scaner(flow: PacketFlow, queue: PacketQueue) -> Tuple[PacketFlow, PacketFlow]:
+    def flow_scaner(flow: PacketFlow, queue: PacketQueue) -> Tuple[
+        PacketFlow, PacketFlow]:
         cary_flow = flow.replace(rate=queue.pasprob * flow.rate)
         return cary_flow, flow.replace(weighted_plen=flow.rate * flow.plen)
 
-    return RouteNetStep(lax_scan_flow_update(flow_scaner), update_queue, PacketFlow.reducer())
+    return RouteNetStep(lax_scan_flow_update(flow_scaner), update_queue,
+                        PacketFlow.reducer())
 
 
 def FixedPoint(model, *args, **kwargs):
@@ -161,20 +182,23 @@ def FixedPoint(model, *args, **kwargs):
 
     :return: A model computing fixed point the given model.
     """
+
     @wraps(model)
     def _Model(*model_args, **model_kwargs) -> Network:
         def _fixedpoint(net: Network) -> Network:
             step_fn = model(*model_args, **model_kwargs)
 
             def T(x, params: Network):
-                params = params.replace(queues=params.queues.update_dynamic_fields(x))
+                params = params.replace(
+                    queues=params.queues.update_dynamic_fields(x))
                 y = step_fn(params)
                 return y.queues.get_dynamic_fields()
 
             fpi = FixedPointIteration(fixed_point_fun=T, *args, **kwargs)
             opt = fpi.run(net.queues.get_dynamic_fields(), net)
 
-            fix = net.replace(queues=net.queues.update_dynamic_fields(opt.params))
+            fix = net.replace(
+                queues=net.queues.update_dynamic_fields(opt.params))
 
             return fix
 

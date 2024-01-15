@@ -62,15 +62,18 @@ class Network:
     n_queues: Array
     n_routes: Array  # [n_graph]
 
-    interface: Optional[Array] = None  # [sum(n_queue),1] groups queues e.g. for scheduling
+    interface: Optional[
+        Array] = None  # [sum(n_queue),1] groups queues e.g. for scheduling
     n_interfaces: Optional[Array] = None
 
     @property
-    def flow_lengths(self)->Array:
+    def flow_lengths(self) -> Array:
         """
         Dynamic length of each flow in the network
 
         :return: An array of flow lengths
         """
         sum_n_flows = jax.tree_util.tree_leaves(self.flows)[0].shape[0]
-        return jax.ops.segment_max(self.step, self.flow, num_segments=sum_n_flows) + jnp.ones((), dtype=jnp.int32)
+        return jax.ops.segment_max(self.step, self.flow,
+                                   num_segments=sum_n_flows) + jnp.ones((),
+                                                                        dtype=jnp.int32)
