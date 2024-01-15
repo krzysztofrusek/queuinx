@@ -29,3 +29,4 @@ advanced computational tool like differentiable programming, compilation or supp
   doi={10.1109/JSAC.2020.3000405}
 }
 ```
+## [Documentation](https://krzysztofrusek.github.io/queuinx/)
