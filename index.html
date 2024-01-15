@@ -50,9 +50,6 @@
               <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="queuinx.html">API</a></li>
-<li class="toctree-l1"><a class="reference internal" href="queuinx.html#queuing-theory">Queuing theory</a></li>
-<li class="toctree-l1"><a class="reference internal" href="queuinx.html#module-queuinx.utils">Utilities</a></li>
-<li class="toctree-l1"><a class="reference internal" href="queuinx.html#module-queuinx.experimental.models">Experimental</a></li>
 <li class="toctree-l1"><a class="reference internal" href="design.html">Design</a></li>
 </ul>
 
@@ -82,8 +79,40 @@
              
   <section id="welcome-to-queuinx-s-documentation">
 <h1>Welcome to Queuinx’s documentation!<a class="headerlink" href="#welcome-to-queuinx-s-documentation" title="Link to this heading"></a></h1>
+<p>Queuinx is an implementation of some queuing theory results in JAX that is differentiable and accelerator friendly.
+The particular focus is on networks of finite queues solved by fixed point algorithm of a RouteNetStep step.
+The API if designed to follow <code class="xref py py-meth docutils literal notranslate"><span class="pre">jraph()</span></code> and can be considered as a reference implementation of
+<cite>RouteNet</cite> neural architecture.</p>
+<p>The use of JAX a machine learning framework as the basis for the implementation allows the use of
+advanced computational tool like differentiable programming, compilation or support for accelerator.</p>
+<section id="instalation">
+<h2>Instalation<a class="headerlink" href="#instalation" title="Link to this heading"></a></h2>
+<p>You can install Queuinx from pypi</p>
+<blockquote>
+<div><p><code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">queuinx</span></code></p>
+</div></blockquote>
+<p>or the latest version form github</p>
+<blockquote>
+<div><p><code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">git+https://github.com/krzysztofrusek/queuinx.git</span></code></p>
+</div></blockquote>
+<p><strong>If you decide to apply the concepts presented or base on the provided code, please do refer our paper.</strong></p>
+<blockquote>
+<div><dl class="simple">
+<dt>&#64;ARTICLE{9109574,</dt><dd><p>author={K. {Rusek} and J. {Suárez-Varela} and P. {Almasan} and P. {Barlet-Ros} and A. {Cabellos-Aparicio}},
+journal={IEEE Journal on Selected Areas in Communications},
+title={RouteNet: Leveraging Graph Neural Networks for Network Modeling and Optimization in SDN},
+year={2020},
+volume={38},
+number={10},
+pages={2260-2270},
+doi={10.1109/JSAC.2020.3000405}</p>
+</dd>
+</dl>
+<p>}</p>
+</div></blockquote>
 <div class="toctree-wrapper compound">
 </div>
+</section>
 </section>
 <section id="indices-and-tables">
 <h1>Indices and tables<a class="headerlink" href="#indices-and-tables" title="Link to this heading"></a></h1>
