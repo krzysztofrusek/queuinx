@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" data-content_root="./">
 <head>
-  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>API &mdash; Queuinx  documentation</title>
@@ -105,7 +105,13 @@
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="#queuinx.experimental.models.Readout_mm1"><code class="docutils literal notranslate"><span class="pre">Readout_mm1()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="#queuinx.experimental.models.SchedulingPolicy"><code class="docutils literal notranslate"><span class="pre">SchedulingPolicy</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#queuinx.experimental.models.SchedulingPolicy"><code class="docutils literal notranslate"><span class="pre">SchedulingPolicy</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#queuinx.experimental.models.SchedulingPolicy.SP"><code class="docutils literal notranslate"><span class="pre">SchedulingPolicy.SP</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#queuinx.experimental.models.SchedulingPolicy.WFQ"><code class="docutils literal notranslate"><span class="pre">SchedulingPolicy.WFQ</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#queuinx.experimental.models.SchedulingPolicy.DRR"><code class="docutils literal notranslate"><span class="pre">SchedulingPolicy.DRR</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#queuinx.experimental.models.SchedulingPolicy.FIFO"><code class="docutils literal notranslate"><span class="pre">SchedulingPolicy.FIFO</span></code></a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -405,7 +411,7 @@ This includes both waiting and service time.</p>
 </dd>
 </dl>
 <aside class="footnote-list brackets">
-<aside class="footnote brackets" id="id2" role="doc-footnote">
+<aside class="footnote brackets" id="id2" role="note">
 <span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id1">1</a><span class="fn-bracket">]</span></span>
 <p>Harrison, P. G. (1993). “Response time distributions in queueing network models”. Performance Evaluation of Computer and Communication Systems. Lecture Notes in Computer Science. Vol. 729. pp. 147–164.</p>
 </aside>
@@ -554,7 +560,7 @@ This includes both waiting and service time.</p>
 <dl class="py class">
 <dt class="sig sig-object py" id="queuinx.experimental.models.PacketQueue">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">queuinx.experimental.models.</span></span><span class="sig-name descname"><span class="pre">PacketQueue</span></span><a class="headerlink" href="#queuinx.experimental.models.PacketQueue" title="Link to this definition"></a></dt>
-<dd><p>PacketQueue(b: Union[jax.Array, numpy.ndarray, <a href="#id9"><span class="problematic" id="id10">numpy.bool_</span></a>, numpy.number], service_rate: Union[jax.Array, numpy.ndarray, <a href="#id11"><span class="problematic" id="id12">numpy.bool_</span></a>, numpy.number], arrivals: Union[jax.Array, numpy.ndarray, <a href="#id13"><span class="problematic" id="id14">numpy.bool_</span></a>, numpy.number], pasprob: Union[jax.Array, numpy.ndarray, <a href="#id15"><span class="problematic" id="id16">numpy.bool_</span></a>, numpy.number], speed: Union[jax.Array, numpy.ndarray, <a href="#id17"><span class="problematic" id="id18">numpy.bool_</span></a>, numpy.number], w: Union[jax.Array, numpy.ndarray, <a href="#id19"><span class="problematic" id="id20">numpy.bool_</span></a>, numpy.number], priority: Union[jax.Array, numpy.ndarray, <a href="#id21"><span class="problematic" id="id22">numpy.bool_</span></a>, numpy.number], bit_buffer: Union[jax.Array, numpy.ndarray, <a href="#id23"><span class="problematic" id="id24">numpy.bool_</span></a>, numpy.number], policy: queuinx.experimental.models.SchedulingPolicy = &lt;SchedulingPolicy.FIFO: 4&gt;)</p>
+<dd><p>Queue with scheduling</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="queuinx.experimental.models.PacketQueue.__init__">
 <span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">b</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">service_rate</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">arrivals</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pasprob</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">speed</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">w</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">priority</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bit_buffer</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">policy</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">SchedulingPolicy.FIFO</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#queuinx.experimental.models.PacketQueue.__init__" title="Link to this definition"></a></dt>
@@ -594,10 +600,32 @@ This includes both waiting and service time.</p>
 </dl>
 </dd></dl>
 
-<dl class="py class">
+<dl class="py class enum">
 <dt class="sig sig-object py" id="queuinx.experimental.models.SchedulingPolicy">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">queuinx.experimental.models.</span></span><span class="sig-name descname"><span class="pre">SchedulingPolicy</span></span><a class="headerlink" href="#queuinx.experimental.models.SchedulingPolicy" title="Link to this definition"></a></dt>
+<em class="property"><span class="pre">enum</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">queuinx.experimental.models.</span></span><span class="sig-name descname"><span class="pre">SchedulingPolicy</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#queuinx.experimental.models.SchedulingPolicy" title="Link to this definition"></a></dt>
+<dd><p>Types of scheduling</p>
+<p>Valid values are as follows:</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="queuinx.experimental.models.SchedulingPolicy.SP">
+<span class="sig-name descname"><span class="pre">SP</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;SchedulingPolicy.SP:</span> <span class="pre">1&gt;</span></em><a class="headerlink" href="#queuinx.experimental.models.SchedulingPolicy.SP" title="Link to this definition"></a></dt>
 <dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="queuinx.experimental.models.SchedulingPolicy.WFQ">
+<span class="sig-name descname"><span class="pre">WFQ</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;SchedulingPolicy.WFQ:</span> <span class="pre">2&gt;</span></em><a class="headerlink" href="#queuinx.experimental.models.SchedulingPolicy.WFQ" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="queuinx.experimental.models.SchedulingPolicy.DRR">
+<span class="sig-name descname"><span class="pre">DRR</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;SchedulingPolicy.DRR:</span> <span class="pre">3&gt;</span></em><a class="headerlink" href="#queuinx.experimental.models.SchedulingPolicy.DRR" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="queuinx.experimental.models.SchedulingPolicy.FIFO">
+<span class="sig-name descname"><span class="pre">FIFO</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;SchedulingPolicy.FIFO:</span> <span class="pre">4&gt;</span></em><a class="headerlink" href="#queuinx.experimental.models.SchedulingPolicy.FIFO" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
 
 </section>
 </section>
