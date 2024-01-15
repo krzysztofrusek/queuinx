@@ -22,13 +22,12 @@ jobs:
       - name: Build the documentation with Sphinx
         run: |
           pip install -r docs/requirements.txt
-          cd docs
-          make html
+          sphinx-build -b html docs docs/build/html
 
       - name: Publish the documentation
         uses: JamesIves/github-pages-deploy-action@3.6.2
         with:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           BRANCH: gh-pages
-          FOLDER: docs/_build/html
+          FOLDER: docs/build/html
           CLEAN: true
