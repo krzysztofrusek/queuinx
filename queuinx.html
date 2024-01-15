@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>API &mdash; Queuinx 0.0.1 documentation</title>
+  <title>API &mdash; Queuinx  documentation</title>
       <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=80d5e7a1" />
       <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=19f00094" />
 
@@ -15,7 +15,7 @@
   
         <script src="_static/jquery.js?v=5d32c60e"></script>
         <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-        <script src="_static/documentation_options.js?v=d45e8c67"></script>
+        <script src="_static/documentation_options.js?v=5929fcd5"></script>
         <script src="_static/doctools.js?v=888ff710"></script>
         <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="_static/js/theme.js"></script>
@@ -35,7 +35,11 @@
           
           <a href="index.html" class="icon icon-home">
             Queuinx
+              <img src="_static/logo.svg" class="logo" alt="Logo"/>
           </a>
+              <div class="version">
+                0.0.1dev1
+              </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
     <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
@@ -47,13 +51,23 @@
               <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
 <ul class="current">
 <li class="toctree-l1 current"><a class="current reference internal" href="#">API</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#queuinx.FiniteFifo"><code class="docutils literal notranslate"><span class="pre">FiniteFifo</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#queuinx.FiniteFifo"><code class="docutils literal notranslate"><span class="pre">FiniteFifo</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#queuinx.FiniteFifo.__init__"><code class="docutils literal notranslate"><span class="pre">FiniteFifo.__init__()</span></code></a></li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="#queuinx.Network"><code class="docutils literal notranslate"><span class="pre">Network</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#queuinx.Network.__init__"><code class="docutils literal notranslate"><span class="pre">Network.__init__()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="#queuinx.Network.flow_lengths"><code class="docutils literal notranslate"><span class="pre">Network.flow_lengths</span></code></a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="#queuinx.PoissonFlow"><code class="docutils literal notranslate"><span class="pre">PoissonFlow</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="#queuinx.QoS"><code class="docutils literal notranslate"><span class="pre">QoS</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#queuinx.PoissonFlow"><code class="docutils literal notranslate"><span class="pre">PoissonFlow</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#queuinx.PoissonFlow.__init__"><code class="docutils literal notranslate"><span class="pre">PoissonFlow.__init__()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#queuinx.QoS"><code class="docutils literal notranslate"><span class="pre">QoS</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#queuinx.QoS.__init__"><code class="docutils literal notranslate"><span class="pre">QoS.__init__()</span></code></a></li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="#queuinx.Readout_mm1b"><code class="docutils literal notranslate"><span class="pre">Readout_mm1b()</span></code></a></li>
 <li class="toctree-l2"><a class="reference internal" href="#queuinx.RouteNetStep"><code class="docutils literal notranslate"><span class="pre">RouteNetStep()</span></code></a></li>
 </ul>
@@ -61,6 +75,7 @@
 <li class="toctree-l1"><a class="reference internal" href="#queuing-theory">Queuing theory</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#module-queuinx.queuing_theory.mm1b">MM1b</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#queuinx.queuing_theory.mm1b.StationarySystem"><code class="docutils literal notranslate"><span class="pre">StationarySystem</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#queuinx.queuing_theory.mm1b.StationarySystem.__init__"><code class="docutils literal notranslate"><span class="pre">StationarySystem.__init__()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#queuinx.queuing_theory.mm1b.StationarySystem.mean"><code class="docutils literal notranslate"><span class="pre">StationarySystem.mean()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#queuinx.queuing_theory.mm1b.StationarySystem.variance"><code class="docutils literal notranslate"><span class="pre">StationarySystem.variance()</span></code></a></li>
 </ul>
@@ -76,7 +91,10 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="#module-queuinx.utils">Utilities</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#queuinx.utils.RaggedCarry"><code class="docutils literal notranslate"><span class="pre">RaggedCarry</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#queuinx.utils.RaggedCarry"><code class="docutils literal notranslate"><span class="pre">RaggedCarry</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#queuinx.utils.RaggedCarry.__init__"><code class="docutils literal notranslate"><span class="pre">RaggedCarry.__init__()</span></code></a></li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="#queuinx.utils.batch"><code class="docutils literal notranslate"><span class="pre">batch()</span></code></a></li>
 <li class="toctree-l2"><a class="reference internal" href="#queuinx.utils.ragged"><code class="docutils literal notranslate"><span class="pre">ragged()</span></code></a></li>
 <li class="toctree-l2"><a class="reference internal" href="#queuinx.utils.unbatch"><code class="docutils literal notranslate"><span class="pre">unbatch()</span></code></a></li>
@@ -85,8 +103,14 @@
 <li class="toctree-l1"><a class="reference internal" href="#module-queuinx.experimental.models">Experimental</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#queuinx.experimental.models.ApproximateScheduling"><code class="docutils literal notranslate"><span class="pre">ApproximateScheduling()</span></code></a></li>
 <li class="toctree-l2"><a class="reference internal" href="#queuinx.experimental.models.FixedPoint"><code class="docutils literal notranslate"><span class="pre">FixedPoint()</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="#queuinx.experimental.models.PacketFlow"><code class="docutils literal notranslate"><span class="pre">PacketFlow</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="#queuinx.experimental.models.PacketQueue"><code class="docutils literal notranslate"><span class="pre">PacketQueue</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#queuinx.experimental.models.PacketFlow"><code class="docutils literal notranslate"><span class="pre">PacketFlow</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#queuinx.experimental.models.PacketFlow.__init__"><code class="docutils literal notranslate"><span class="pre">PacketFlow.__init__()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#queuinx.experimental.models.PacketQueue"><code class="docutils literal notranslate"><span class="pre">PacketQueue</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#queuinx.experimental.models.PacketQueue.__init__"><code class="docutils literal notranslate"><span class="pre">PacketQueue.__init__()</span></code></a></li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="#queuinx.experimental.models.Readout_mm1"><code class="docutils literal notranslate"><span class="pre">Readout_mm1()</span></code></a></li>
 <li class="toctree-l2"><a class="reference internal" href="#queuinx.experimental.models.SchedulingPolicy"><code class="docutils literal notranslate"><span class="pre">SchedulingPolicy</span></code></a></li>
 </ul>
@@ -123,13 +147,31 @@
 <p>Queuinx</p>
 <dl class="py class">
 <dt class="sig sig-object py" id="queuinx.FiniteFifo">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">queuinx.</span></span><span class="sig-name descname"><span class="pre">FiniteFifo</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">b</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">service_rate</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">arrivals</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pasprob</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#queuinx.FiniteFifo" title="Link to this definition"></a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">queuinx.</span></span><span class="sig-name descname"><span class="pre">FiniteFifo</span></span><a class="headerlink" href="#queuinx.FiniteFifo" title="Link to this definition"></a></dt>
 <dd><p>Parameters and state of fine fifo buffer</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="queuinx.FiniteFifo.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">b</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">service_rate</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">arrivals</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pasprob</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#queuinx.FiniteFifo.__init__" title="Link to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>b</strong> (<em>Array</em><em> | </em><em>ndarray</em><em> | </em><em>bool_</em><em> | </em><em>number</em>) – </p></li>
+<li><p><strong>service_rate</strong> (<em>Array</em><em> | </em><em>ndarray</em><em> | </em><em>bool_</em><em> | </em><em>number</em>) – </p></li>
+<li><p><strong>arrivals</strong> (<em>Array</em><em> | </em><em>ndarray</em><em> | </em><em>bool_</em><em> | </em><em>number</em>) – </p></li>
+<li><p><strong>pasprob</strong> (<em>Array</em><em> | </em><em>ndarray</em><em> | </em><em>bool_</em><em> | </em><em>number</em>) – </p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
 </dd></dl>
 
 <dl class="py class">
 <dt class="sig sig-object py" id="queuinx.Network">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">queuinx.</span></span><span class="sig-name descname"><span class="pre">Network</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">queues</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">flows</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">flow</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">step</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">queue</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_flows</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_path_length_mask</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_queues</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_routes</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">interface</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_interfaces</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#queuinx.Network" title="Link to this definition"></a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">queuinx.</span></span><span class="sig-name descname"><span class="pre">Network</span></span><a class="headerlink" href="#queuinx.Network" title="Link to this definition"></a></dt>
 <dd><p>Class for keeping track of a queuing network.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -148,9 +190,34 @@
 </ul>
 </dd>
 </dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="queuinx.Network.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">queues</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">flows</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">flow</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">step</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">queue</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_flows</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_path_length_mask</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_queues</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_routes</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">interface</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_interfaces</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#queuinx.Network.__init__" title="Link to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>queues</strong> (<em>Array</em><em> | </em><em>ndarray</em><em> | </em><em>bool_</em><em> | </em><em>number</em><em> | </em><em>Iterable</em><em>[</em><em>Array</em><em> | </em><em>ndarray</em><em> | </em><em>bool_</em><em> | </em><em>number</em><em> | </em><em>Iterable</em><em>[</em><em>ArrayTree</em><em>] </em><em>| </em><em>Mapping</em><em>[</em><em>Any</em><em>, </em><em>ArrayTree</em><em>]</em><em>] </em><em>| </em><em>Mapping</em><em>[</em><em>Any</em><em>, </em><em>Array</em><em> | </em><em>ndarray</em><em> | </em><em>bool_</em><em> | </em><em>number</em><em> | </em><em>Iterable</em><em>[</em><em>ArrayTree</em><em>] </em><em>| </em><em>Mapping</em><em>[</em><em>Any</em><em>, </em><em>ArrayTree</em><em>]</em><em>]</em>) – </p></li>
+<li><p><strong>flows</strong> (<em>Array</em><em> | </em><em>ndarray</em><em> | </em><em>bool_</em><em> | </em><em>number</em><em> | </em><em>Iterable</em><em>[</em><em>Array</em><em> | </em><em>ndarray</em><em> | </em><em>bool_</em><em> | </em><em>number</em><em> | </em><em>Iterable</em><em>[</em><em>ArrayTree</em><em>] </em><em>| </em><em>Mapping</em><em>[</em><em>Any</em><em>, </em><em>ArrayTree</em><em>]</em><em>] </em><em>| </em><em>Mapping</em><em>[</em><em>Any</em><em>, </em><em>Array</em><em> | </em><em>ndarray</em><em> | </em><em>bool_</em><em> | </em><em>number</em><em> | </em><em>Iterable</em><em>[</em><em>ArrayTree</em><em>] </em><em>| </em><em>Mapping</em><em>[</em><em>Any</em><em>, </em><em>ArrayTree</em><em>]</em><em>]</em>) – </p></li>
+<li><p><strong>flow</strong> (<em>Array</em><em> | </em><em>ndarray</em><em> | </em><em>bool_</em><em> | </em><em>number</em>) – </p></li>
+<li><p><strong>step</strong> (<em>Array</em><em> | </em><em>ndarray</em><em> | </em><em>bool_</em><em> | </em><em>number</em>) – </p></li>
+<li><p><strong>queue</strong> (<em>Array</em><em> | </em><em>ndarray</em><em> | </em><em>bool_</em><em> | </em><em>number</em>) – </p></li>
+<li><p><strong>n_flows</strong> (<em>Array</em><em> | </em><em>ndarray</em><em> | </em><em>bool_</em><em> | </em><em>number</em>) – </p></li>
+<li><p><strong>max_path_length_mask</strong> (<em>Array</em><em> | </em><em>ndarray</em><em> | </em><em>bool_</em><em> | </em><em>number</em>) – </p></li>
+<li><p><strong>n_queues</strong> (<em>Array</em><em> | </em><em>ndarray</em><em> | </em><em>bool_</em><em> | </em><em>number</em>) – </p></li>
+<li><p><strong>n_routes</strong> (<em>Array</em><em> | </em><em>ndarray</em><em> | </em><em>bool_</em><em> | </em><em>number</em>) – </p></li>
+<li><p><strong>interface</strong> (<em>Array</em><em> | </em><em>ndarray</em><em> | </em><em>bool_</em><em> | </em><em>number</em><em> | </em><em>None</em>) – </p></li>
+<li><p><strong>n_interfaces</strong> (<em>Array</em><em> | </em><em>ndarray</em><em> | </em><em>bool_</em><em> | </em><em>number</em><em> | </em><em>None</em>) – </p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
 <dl class="py property">
 <dt class="sig sig-object py" id="queuinx.Network.flow_lengths">
-<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">flow_lengths</span></span><a class="headerlink" href="#queuinx.Network.flow_lengths" title="Link to this definition"></a></dt>
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">flow_lengths</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Array</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">ndarray</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">bool_</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">number</span></em><a class="headerlink" href="#queuinx.Network.flow_lengths" title="Link to this definition"></a></dt>
 <dd><p>Dynamic length of each flow in the network</p>
 <dl class="field-list simple">
 <dt class="field-odd">Returns<span class="colon">:</span></dt>
@@ -163,13 +230,26 @@
 
 <dl class="py class">
 <dt class="sig sig-object py" id="queuinx.PoissonFlow">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">queuinx.</span></span><span class="sig-name descname"><span class="pre">PoissonFlow</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">rate</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#queuinx.PoissonFlow" title="Link to this definition"></a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">queuinx.</span></span><span class="sig-name descname"><span class="pre">PoissonFlow</span></span><a class="headerlink" href="#queuinx.PoissonFlow" title="Link to this definition"></a></dt>
 <dd><p>Parameters and state Poisson arrival flow</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="queuinx.PoissonFlow.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">rate</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#queuinx.PoissonFlow.__init__" title="Link to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>rate</strong> (<em>Array</em><em> | </em><em>ndarray</em><em> | </em><em>bool_</em><em> | </em><em>number</em>) – </p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
 </dd></dl>
 
 <dl class="py class">
 <dt class="sig sig-object py" id="queuinx.QoS">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">queuinx.</span></span><span class="sig-name descname"><span class="pre">QoS</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">delay</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">jitter</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">loss</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#queuinx.QoS" title="Link to this definition"></a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">queuinx.</span></span><span class="sig-name descname"><span class="pre">QoS</span></span><a class="headerlink" href="#queuinx.QoS" title="Link to this definition"></a></dt>
 <dd><p>QoS parameters</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -180,6 +260,23 @@
 </ul>
 </dd>
 </dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="queuinx.QoS.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">delay</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">jitter</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">loss</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#queuinx.QoS.__init__" title="Link to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>delay</strong> (<em>Array</em><em> | </em><em>ndarray</em><em> | </em><em>bool_</em><em> | </em><em>number</em>) – </p></li>
+<li><p><strong>jitter</strong> (<em>Array</em><em> | </em><em>ndarray</em><em> | </em><em>bool_</em><em> | </em><em>number</em><em> | </em><em>None</em>) – </p></li>
+<li><p><strong>loss</strong> (<em>Array</em><em> | </em><em>ndarray</em><em> | </em><em>bool_</em><em> | </em><em>number</em>) – </p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
 </dd></dl>
 
 <dl class="py function">
@@ -188,10 +285,13 @@
 <dd><p>Computes delay per path assuming <cite>M/M/1/B</cite> delay model</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>buffer_upper_bound</strong> – </p>
+<dd class="field-odd"><p><strong>buffer_upper_bound</strong> (<em>int</em>) – </p>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>A step function performing computations.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><em>Callable</em>[[<a class="reference internal" href="#queuinx.Network" title="queuinx.network.Network"><em>Network</em></a>], <a class="reference internal" href="#queuinx.Network" title="queuinx.network.Network"><em>Network</em></a>]</p>
 </dd>
 </dl>
 </dd></dl>
@@ -203,13 +303,16 @@
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>update_flow_fn</strong> – function implementing scan like operation over the queues along a flow</p></li>
-<li><p><strong>update_queue_fn</strong> – function used to update the queues</p></li>
-<li><p><strong>reducers</strong> – A tree of callable used to reduce the flows</p></li>
+<li><p><strong>update_flow_fn</strong> (<em>Callable</em><em>[</em><em>[</em><a class="reference internal" href="#queuinx.utils.RaggedCarry" title="queuinx.utils.RaggedCarry"><em>RaggedCarry</em></a><em>, </em><em>Array</em><em> | </em><em>ndarray</em><em> | </em><em>bool_</em><em> | </em><em>number</em><em> | </em><em>Iterable</em><em>[</em><em>Array</em><em> | </em><em>ndarray</em><em> | </em><em>bool_</em><em> | </em><em>number</em><em> | </em><em>Iterable</em><em>[</em><em>ArrayTree</em><em>] </em><em>| </em><em>Mapping</em><em>[</em><em>Any</em><em>, </em><em>ArrayTree</em><em>]</em><em>] </em><em>| </em><em>Mapping</em><em>[</em><em>Any</em><em>, </em><em>Array</em><em> | </em><em>ndarray</em><em> | </em><em>bool_</em><em> | </em><em>number</em><em> | </em><em>Iterable</em><em>[</em><em>ArrayTree</em><em>] </em><em>| </em><em>Mapping</em><em>[</em><em>Any</em><em>, </em><em>ArrayTree</em><em>]</em><em>]</em><em>]</em><em>, </em><em>Tuple</em><em>[</em><a class="reference internal" href="#queuinx.utils.RaggedCarry" title="queuinx.utils.RaggedCarry"><em>RaggedCarry</em></a><em>, </em><em>Array</em><em> | </em><em>ndarray</em><em> | </em><em>bool_</em><em> | </em><em>number</em><em> | </em><em>Iterable</em><em>[</em><em>Array</em><em> | </em><em>ndarray</em><em> | </em><em>bool_</em><em> | </em><em>number</em><em> | </em><em>Iterable</em><em>[</em><em>ArrayTree</em><em>] </em><em>| </em><em>Mapping</em><em>[</em><em>Any</em><em>, </em><em>ArrayTree</em><em>]</em><em>] </em><em>| </em><em>Mapping</em><em>[</em><em>Any</em><em>, </em><em>Array</em><em> | </em><em>ndarray</em><em> | </em><em>bool_</em><em> | </em><em>number</em><em> | </em><em>Iterable</em><em>[</em><em>ArrayTree</em><em>] </em><em>| </em><em>Mapping</em><em>[</em><em>Any</em><em>, </em><em>ArrayTree</em><em>]</em><em>]</em><em>]</em><em>]</em>) – function implementing scan like operation over the queues along a flow</p></li>
+<li><p><strong>update_queue_fn</strong> (<em>Callable</em><em>[</em><em>[</em><em>Array</em><em> | </em><em>ndarray</em><em> | </em><em>bool_</em><em> | </em><em>number</em><em> | </em><em>Iterable</em><em>[</em><em>Array</em><em> | </em><em>ndarray</em><em> | </em><em>bool_</em><em> | </em><em>number</em><em> | </em><em>Iterable</em><em>[</em><em>ArrayTree</em><em>] </em><em>| </em><em>Mapping</em><em>[</em><em>Any</em><em>, </em><em>ArrayTree</em><em>]</em><em>] </em><em>| </em><em>Mapping</em><em>[</em><em>Any</em><em>, </em><em>Array</em><em> | </em><em>ndarray</em><em> | </em><em>bool_</em><em> | </em><em>number</em><em> | </em><em>Iterable</em><em>[</em><em>ArrayTree</em><em>] </em><em>| </em><em>Mapping</em><em>[</em><em>Any</em><em>, </em><em>ArrayTree</em><em>]</em><em>]</em><em>, </em><em>Array</em><em> | </em><em>ndarray</em><em> | </em><em>bool_</em><em> | </em><em>number</em><em> | </em><em>Iterable</em><em>[</em><em>Array</em><em> | </em><em>ndarray</em><em> | </em><em>bool_</em><em> | </em><em>number</em><em> | </em><em>Iterable</em><em>[</em><em>ArrayTree</em><em>] </em><em>| </em><em>Mapping</em><em>[</em><em>Any</em><em>, </em><em>ArrayTree</em><em>]</em><em>] </em><em>| </em><em>Mapping</em><em>[</em><em>Any</em><em>, </em><em>Array</em><em> | </em><em>ndarray</em><em> | </em><em>bool_</em><em> | </em><em>number</em><em> | </em><em>Iterable</em><em>[</em><em>ArrayTree</em><em>] </em><em>| </em><em>Mapping</em><em>[</em><em>Any</em><em>, </em><em>ArrayTree</em><em>]</em><em>]</em><em>, </em><em>Array</em><em>, </em><em>Array</em><em>]</em><em>, </em><em>Array</em><em> | </em><em>ndarray</em><em> | </em><em>bool_</em><em> | </em><em>number</em><em> | </em><em>Iterable</em><em>[</em><em>Array</em><em> | </em><em>ndarray</em><em> | </em><em>bool_</em><em> | </em><em>number</em><em> | </em><em>Iterable</em><em>[</em><em>ArrayTree</em><em>] </em><em>| </em><em>Mapping</em><em>[</em><em>Any</em><em>, </em><em>ArrayTree</em><em>]</em><em>] </em><em>| </em><em>Mapping</em><em>[</em><em>Any</em><em>, </em><em>Array</em><em> | </em><em>ndarray</em><em> | </em><em>bool_</em><em> | </em><em>number</em><em> | </em><em>Iterable</em><em>[</em><em>ArrayTree</em><em>] </em><em>| </em><em>Mapping</em><em>[</em><em>Any</em><em>, </em><em>ArrayTree</em><em>]</em><em>]</em><em>]</em>) – function used to update the queues</p></li>
+<li><p><strong>reducers</strong> (<em>Any</em>) – A tree of callable used to reduce the flows</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>A function that applies a step of configured model</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><em>Callable</em>[[<a class="reference internal" href="#queuinx.Network" title="queuinx.network.Network"><em>Network</em></a>], <a class="reference internal" href="#queuinx.Network" title="queuinx.network.Network"><em>Network</em></a>]</p>
 </dd>
 </dl>
 </dd></dl>
@@ -222,8 +325,33 @@
 <p>Numerical procedures for M/M/1/b system</p>
 <dl class="py class">
 <dt class="sig sig-object py" id="queuinx.queuing_theory.mm1b.StationarySystem">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">queuinx.queuing_theory.mm1b.</span></span><span class="sig-name descname"><span class="pre">StationarySystem</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#queuinx.queuing_theory.mm1b.StationarySystem" title="Link to this definition"></a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">queuinx.queuing_theory.mm1b.</span></span><span class="sig-name descname"><span class="pre">StationarySystem</span></span><a class="headerlink" href="#queuinx.queuing_theory.mm1b.StationarySystem" title="Link to this definition"></a></dt>
 <dd><p>A Stationary distribution of system occupancy in M/M/1/b</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="queuinx.queuing_theory.mm1b.StationarySystem.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">rho</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">b</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">buffer_upper_bound</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#queuinx.queuing_theory.mm1b.StationarySystem.__init__" title="Link to this definition"></a></dt>
+<dd><p>Initializes a Categorical distribution.</p>
+<dl>
+<dt>Args:</dt><dd><dl class="simple">
+<dt>logits: Logit transform of the probability of each category. Only one</dt><dd><p>of <cite>logits</cite> or <cite>probs</cite> can be specified.</p>
+</dd>
+<dt>probs: Probability of each category. Only one of <cite>logits</cite> or <cite>probs</cite> can</dt><dd><p>be specified.</p>
+</dd>
+</dl>
+<p>dtype: The type of event samples.</p>
+</dd>
+</dl>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>rho</strong> (<em>Array</em><em> | </em><em>ndarray</em><em> | </em><em>bool_</em><em> | </em><em>number</em>) – </p></li>
+<li><p><strong>b</strong> (<em>Array</em><em> | </em><em>ndarray</em><em> | </em><em>bool_</em><em> | </em><em>number</em>) – </p></li>
+<li><p><strong>buffer_upper_bound</strong> (<em>int</em>) – </p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
 <dl class="py method">
 <dt class="sig sig-object py" id="queuinx.queuing_theory.mm1b.StationarySystem.mean">
 <span class="sig-name descname"><span class="pre">mean</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#queuinx.queuing_theory.mm1b.StationarySystem.mean" title="Link to this definition"></a></dt>
@@ -245,14 +373,17 @@
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>a</strong> – Arrival rate</p></li>
-<li><p><strong>mu</strong> – Service rate</p></li>
-<li><p><strong>b</strong> – buffer</p></li>
-<li><p><strong>buffer_upper_bound</strong> – Static integer bounding all buffers</p></li>
+<li><p><strong>a</strong> (<em>Array</em><em> | </em><em>ndarray</em><em> | </em><em>bool_</em><em> | </em><em>number</em>) – Arrival rate</p></li>
+<li><p><strong>mu</strong> (<em>Array</em><em> | </em><em>ndarray</em><em> | </em><em>bool_</em><em> | </em><em>number</em>) – Service rate</p></li>
+<li><p><strong>b</strong> (<em>Array</em><em> | </em><em>ndarray</em><em> | </em><em>bool_</em><em> | </em><em>number</em>) – buffer</p></li>
+<li><p><strong>buffer_upper_bound</strong> (<em>int</em>) – Static integer bounding all buffers</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>Delay distribution (including service time)</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><em>Distribution</em></p>
 </dd>
 </dl>
 </dd></dl>
@@ -268,12 +399,15 @@ This includes both waiting and service time.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>a</strong> – Arrival rate</p></li>
-<li><p><strong>mu</strong> – Service rate</p></li>
+<li><p><strong>a</strong> (<em>Array</em><em> | </em><em>ndarray</em><em> | </em><em>bool_</em><em> | </em><em>number</em>) – Arrival rate</p></li>
+<li><p><strong>mu</strong> (<em>Array</em><em> | </em><em>ndarray</em><em> | </em><em>bool_</em><em> | </em><em>number</em>) – Service rate</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>Delay distribution (including service time)</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><em>Distribution</em> | <em>Distribution</em></p>
 </dd>
 </dl>
 <aside class="footnote-list brackets">
@@ -293,14 +427,39 @@ This includes both waiting and service time.</p>
 <span id="utilities"></span><h1>Utilities<a class="headerlink" href="#module-queuinx.utils" title="Link to this heading"></a></h1>
 <dl class="py class">
 <dt class="sig sig-object py" id="queuinx.utils.RaggedCarry">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">queuinx.utils.</span></span><span class="sig-name descname"><span class="pre">RaggedCarry</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">carry</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">step</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_step</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#queuinx.utils.RaggedCarry" title="Link to this definition"></a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">queuinx.utils.</span></span><span class="sig-name descname"><span class="pre">RaggedCarry</span></span><a class="headerlink" href="#queuinx.utils.RaggedCarry" title="Link to this definition"></a></dt>
 <dd><p>Carry for variable length sequences. Svan function must be decorated with <a class="reference internal" href="#queuinx.utils.ragged" title="queuinx.utils.ragged"><code class="xref py py-func docutils literal notranslate"><span class="pre">ragged()</span></code></a></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="queuinx.utils.RaggedCarry.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">carry</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">step</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_step</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#queuinx.utils.RaggedCarry.__init__" title="Link to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>carry</strong> (<em>Array</em><em> | </em><em>ndarray</em><em> | </em><em>bool_</em><em> | </em><em>number</em><em> | </em><em>Iterable</em><em>[</em><em>Array</em><em> | </em><em>ndarray</em><em> | </em><em>bool_</em><em> | </em><em>number</em><em> | </em><em>Iterable</em><em>[</em><em>ArrayTree</em><em>] </em><em>| </em><em>Mapping</em><em>[</em><em>Any</em><em>, </em><em>ArrayTree</em><em>]</em><em>] </em><em>| </em><em>Mapping</em><em>[</em><em>Any</em><em>, </em><em>Array</em><em> | </em><em>ndarray</em><em> | </em><em>bool_</em><em> | </em><em>number</em><em> | </em><em>Iterable</em><em>[</em><em>ArrayTree</em><em>] </em><em>| </em><em>Mapping</em><em>[</em><em>Any</em><em>, </em><em>ArrayTree</em><em>]</em><em>]</em>) – </p></li>
+<li><p><strong>step</strong> (<em>Array</em><em> | </em><em>ndarray</em><em> | </em><em>bool_</em><em> | </em><em>number</em>) – </p></li>
+<li><p><strong>n_step</strong> (<em>Array</em><em> | </em><em>ndarray</em><em> | </em><em>bool_</em><em> | </em><em>number</em>) – </p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
 </dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="queuinx.utils.batch">
 <span class="sig-prename descclassname"><span class="pre">queuinx.utils.</span></span><span class="sig-name descname"><span class="pre">batch</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">nets</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#queuinx.utils.batch" title="Link to this definition"></a></dt>
 <dd><p>Returns a batched network given a list of networks.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>nets</strong> (<em>Sequence</em><em>[</em><a class="reference internal" href="#queuinx.Network" title="queuinx.network.Network"><em>Network</em></a><em>]</em>) – </p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="#queuinx.Network" title="queuinx.network.Network"><em>Network</em></a></p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py function">
@@ -309,7 +468,7 @@ This includes both waiting and service time.</p>
 <dd><p>Decorates scan function to make it compatible with <a class="reference internal" href="#queuinx.utils.RaggedCarry" title="queuinx.utils.RaggedCarry"><code class="xref py py-class docutils literal notranslate"><span class="pre">RaggedCarry</span></code></a></p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>f</strong> – A scan function</p>
+<dd class="field-odd"><p><strong>f</strong> (<em>Callable</em>) – A scan function</p>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>A function accepting <a class="reference internal" href="#queuinx.utils.RaggedCarry" title="queuinx.utils.RaggedCarry"><code class="xref py py-class docutils literal notranslate"><span class="pre">RaggedCarry</span></code></a></p>
@@ -323,7 +482,10 @@ This includes both waiting and service time.</p>
 <dd><p>Returns a list of networks given a batched network.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>net</strong> – the batched network, which will be unbatched into a list of networks.</p>
+<dd class="field-odd"><p><strong>net</strong> (<a class="reference internal" href="#queuinx.Network" title="queuinx.network.Network"><em>Network</em></a>) – the batched network, which will be unbatched into a list of networks.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>list[<a class="reference internal" href="#queuinx.Network" title="queuinx.network.Network"><em>Network</em></a>]</p>
 </dd>
 </dl>
 </dd></dl>
@@ -343,10 +505,13 @@ This includes both waiting and service time.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>n_tos</strong> – Maksimum number of types of service per queue group</p></li>
-<li><p><strong>buffer_upper_bound</strong> – Statically know limit for all buffers</p></li>
-<li><p><strong>interface_upper_bound</strong> – Statically know limit for number of interfaces</p></li>
+<li><p><strong>n_tos</strong> (<em>int</em>) – Maksimum number of types of service per queue group</p></li>
+<li><p><strong>buffer_upper_bound</strong> (<em>int</em>) – Statically know limit for all buffers</p></li>
+<li><p><strong>interface_upper_bound</strong> (<em>int</em>) – Statically know limit for number of interfaces</p></li>
 </ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><em>Callable</em>[[<a class="reference internal" href="#queuinx.Network" title="queuinx.network.Network"><em>Network</em></a>], <a class="reference internal" href="#queuinx.Network" title="queuinx.network.Network"><em>Network</em></a>]</p>
 </dd>
 </dl>
 </dd></dl>
@@ -371,13 +536,55 @@ This includes both waiting and service time.</p>
 
 <dl class="py class">
 <dt class="sig sig-object py" id="queuinx.experimental.models.PacketFlow">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">queuinx.experimental.models.</span></span><span class="sig-name descname"><span class="pre">PacketFlow</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">rate</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">jax.Array</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">numpy.ndarray</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">numpy.bool_</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">numpy.number</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">plen</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">jax.Array</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">numpy.ndarray</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">numpy.bool_</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">numpy.number</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">weighted_plen</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">jax.Array</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">numpy.ndarray</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">numpy.bool_</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">numpy.number</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">NoneType</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#queuinx.experimental.models.PacketFlow" title="Link to this definition"></a></dt>
-<dd></dd></dl>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">queuinx.experimental.models.</span></span><span class="sig-name descname"><span class="pre">PacketFlow</span></span><a class="headerlink" href="#queuinx.experimental.models.PacketFlow" title="Link to this definition"></a></dt>
+<dd><p>PacketFlow(rate: Union[jax.Array, numpy.ndarray, <a href="#id3"><span class="problematic" id="id4">numpy.bool_</span></a>, numpy.number], plen: Union[jax.Array, numpy.ndarray, <a href="#id5"><span class="problematic" id="id6">numpy.bool_</span></a>, numpy.number], weighted_plen: Union[jax.Array, numpy.ndarray, <a href="#id7"><span class="problematic" id="id8">numpy.bool_</span></a>, numpy.number, NoneType] = None)</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="queuinx.experimental.models.PacketFlow.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">rate</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">plen</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">weighted_plen</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#queuinx.experimental.models.PacketFlow.__init__" title="Link to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>rate</strong> (<em>Array</em><em> | </em><em>ndarray</em><em> | </em><em>bool_</em><em> | </em><em>number</em>) – </p></li>
+<li><p><strong>plen</strong> (<em>Array</em><em> | </em><em>ndarray</em><em> | </em><em>bool_</em><em> | </em><em>number</em>) – </p></li>
+<li><p><strong>weighted_plen</strong> (<em>Array</em><em> | </em><em>ndarray</em><em> | </em><em>bool_</em><em> | </em><em>number</em><em> | </em><em>None</em>) – </p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
 
 <dl class="py class">
 <dt class="sig sig-object py" id="queuinx.experimental.models.PacketQueue">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">queuinx.experimental.models.</span></span><span class="sig-name descname"><span class="pre">PacketQueue</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">b:</span> <span class="pre">Union[jax.Array,</span> <span class="pre">numpy.ndarray,</span> <span class="pre">numpy.bool_,</span> <span class="pre">numpy.number],</span> <span class="pre">service_rate:</span> <span class="pre">Union[jax.Array,</span> <span class="pre">numpy.ndarray,</span> <span class="pre">numpy.bool_,</span> <span class="pre">numpy.number],</span> <span class="pre">arrivals:</span> <span class="pre">Union[jax.Array,</span> <span class="pre">numpy.ndarray,</span> <span class="pre">numpy.bool_,</span> <span class="pre">numpy.number],</span> <span class="pre">pasprob:</span> <span class="pre">Union[jax.Array,</span> <span class="pre">numpy.ndarray,</span> <span class="pre">numpy.bool_,</span> <span class="pre">numpy.number],</span> <span class="pre">speed:</span> <span class="pre">Union[jax.Array,</span> <span class="pre">numpy.ndarray,</span> <span class="pre">numpy.bool_,</span> <span class="pre">numpy.number],</span> <span class="pre">w:</span> <span class="pre">Union[jax.Array,</span> <span class="pre">numpy.ndarray,</span> <span class="pre">numpy.bool_,</span> <span class="pre">numpy.number],</span> <span class="pre">priority:</span> <span class="pre">Union[jax.Array,</span> <span class="pre">numpy.ndarray,</span> <span class="pre">numpy.bool_,</span> <span class="pre">numpy.number],</span> <span class="pre">bit_buffer:</span> <span class="pre">Union[jax.Array,</span> <span class="pre">numpy.ndarray,</span> <span class="pre">numpy.bool_,</span> <span class="pre">numpy.number],</span> <span class="pre">policy:</span> <span class="pre">queuinx.experimental.models.SchedulingPolicy</span> <span class="pre">=</span> <span class="pre">&lt;SchedulingPolicy.FIFO:</span> <span class="pre">4&gt;</span></em><span class="sig-paren">)</span><a class="headerlink" href="#queuinx.experimental.models.PacketQueue" title="Link to this definition"></a></dt>
-<dd></dd></dl>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">queuinx.experimental.models.</span></span><span class="sig-name descname"><span class="pre">PacketQueue</span></span><a class="headerlink" href="#queuinx.experimental.models.PacketQueue" title="Link to this definition"></a></dt>
+<dd><p>PacketQueue(b: Union[jax.Array, numpy.ndarray, <a href="#id9"><span class="problematic" id="id10">numpy.bool_</span></a>, numpy.number], service_rate: Union[jax.Array, numpy.ndarray, <a href="#id11"><span class="problematic" id="id12">numpy.bool_</span></a>, numpy.number], arrivals: Union[jax.Array, numpy.ndarray, <a href="#id13"><span class="problematic" id="id14">numpy.bool_</span></a>, numpy.number], pasprob: Union[jax.Array, numpy.ndarray, <a href="#id15"><span class="problematic" id="id16">numpy.bool_</span></a>, numpy.number], speed: Union[jax.Array, numpy.ndarray, <a href="#id17"><span class="problematic" id="id18">numpy.bool_</span></a>, numpy.number], w: Union[jax.Array, numpy.ndarray, <a href="#id19"><span class="problematic" id="id20">numpy.bool_</span></a>, numpy.number], priority: Union[jax.Array, numpy.ndarray, <a href="#id21"><span class="problematic" id="id22">numpy.bool_</span></a>, numpy.number], bit_buffer: Union[jax.Array, numpy.ndarray, <a href="#id23"><span class="problematic" id="id24">numpy.bool_</span></a>, numpy.number], policy: queuinx.experimental.models.SchedulingPolicy = &lt;SchedulingPolicy.FIFO: 4&gt;)</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="queuinx.experimental.models.PacketQueue.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">b</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">service_rate</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">arrivals</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pasprob</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">speed</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">w</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">priority</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bit_buffer</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">policy</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">SchedulingPolicy.FIFO</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#queuinx.experimental.models.PacketQueue.__init__" title="Link to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>b</strong> (<em>Array</em><em> | </em><em>ndarray</em><em> | </em><em>bool_</em><em> | </em><em>number</em>) – </p></li>
+<li><p><strong>service_rate</strong> (<em>Array</em><em> | </em><em>ndarray</em><em> | </em><em>bool_</em><em> | </em><em>number</em>) – </p></li>
+<li><p><strong>arrivals</strong> (<em>Array</em><em> | </em><em>ndarray</em><em> | </em><em>bool_</em><em> | </em><em>number</em>) – </p></li>
+<li><p><strong>pasprob</strong> (<em>Array</em><em> | </em><em>ndarray</em><em> | </em><em>bool_</em><em> | </em><em>number</em>) – </p></li>
+<li><p><strong>speed</strong> (<em>Array</em><em> | </em><em>ndarray</em><em> | </em><em>bool_</em><em> | </em><em>number</em>) – </p></li>
+<li><p><strong>w</strong> (<em>Array</em><em> | </em><em>ndarray</em><em> | </em><em>bool_</em><em> | </em><em>number</em>) – </p></li>
+<li><p><strong>priority</strong> (<em>Array</em><em> | </em><em>ndarray</em><em> | </em><em>bool_</em><em> | </em><em>number</em>) – </p></li>
+<li><p><strong>bit_buffer</strong> (<em>Array</em><em> | </em><em>ndarray</em><em> | </em><em>bool_</em><em> | </em><em>number</em>) – </p></li>
+<li><p><strong>policy</strong> (<a class="reference internal" href="#queuinx.experimental.models.SchedulingPolicy" title="queuinx.experimental.models.SchedulingPolicy"><em>SchedulingPolicy</em></a>) – </p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="queuinx.experimental.models.Readout_mm1">
@@ -387,12 +594,15 @@ This includes both waiting and service time.</p>
 <dt class="field-odd">Returns<span class="colon">:</span></dt>
 <dd class="field-odd"><p>RouteNet step callable</p>
 </dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><em>Callable</em>[[<a class="reference internal" href="#queuinx.Network" title="queuinx.network.Network"><em>Network</em></a>], <a class="reference internal" href="#queuinx.Network" title="queuinx.network.Network"><em>Network</em></a>]</p>
+</dd>
 </dl>
 </dd></dl>
 
 <dl class="py class">
 <dt class="sig sig-object py" id="queuinx.experimental.models.SchedulingPolicy">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">queuinx.experimental.models.</span></span><span class="sig-name descname"><span class="pre">SchedulingPolicy</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">names</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">module</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">qualname</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">type</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">start</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">boundary</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#queuinx.experimental.models.SchedulingPolicy" title="Link to this definition"></a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">queuinx.experimental.models.</span></span><span class="sig-name descname"><span class="pre">SchedulingPolicy</span></span><a class="headerlink" href="#queuinx.experimental.models.SchedulingPolicy" title="Link to this definition"></a></dt>
 <dd></dd></dl>
 
 </section>
@@ -408,7 +618,7 @@ This includes both waiting and service time.</p>
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2023, Krzysztof Rusek.</p>
+    <p>&#169; Copyright 2024, Krzysztof Rusek.</p>
   </div>
 
   Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
