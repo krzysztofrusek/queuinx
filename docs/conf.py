@@ -23,15 +23,12 @@ sys.path.insert(0, os.path.abspath('..'))
 extensions = ['sphinx.ext.autodoc',
               'sphinx.ext.autosummary',
               'recommonmark',
-              'sphinx.ext.autodoc.typehints']
+              'sphinx.ext.autodoc.typehints',
+              'enum_tools.autoenum',
+              ]
 
 templates_path = ['_templates']
 exclude_patterns = []
-
-
-
-# -- Options for HTML output -------------------------------------------------
-# https://www.sphinx-doc.org/en/master/usage/configuration.html#options-for-html-output
 
 html_theme = 'sphinx_rtd_theme'
 github_url= "https://github.com/krzysztofrusek/queuinx"

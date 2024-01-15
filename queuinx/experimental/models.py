@@ -43,6 +43,7 @@ class PacketFlow:
 
 
 class SchedulingPolicy(Enum):
+    """Types of scheduling"""
     SP = 1
     WFQ = 2
     DRR = 3
@@ -51,6 +52,7 @@ class SchedulingPolicy(Enum):
 
 @chex.dataclass(frozen=True)
 class PacketQueue(FiniteFifo):
+    """Queue with scheduling"""
     speed: chex.Array
     w: chex.Array
     priority: chex.Array  # 0 highest,
