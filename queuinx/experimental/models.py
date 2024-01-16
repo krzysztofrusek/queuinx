@@ -32,6 +32,7 @@ from queuinx.utils import ragged, _scatter, _flatten
 
 @chex.dataclass(frozen=True)
 class PacketFlow:
+    """Flow with information about packet length"""
     rate: chex.Array
     plen: chex.Array
     weighted_plen: Optional[chex.Array] = None
@@ -57,7 +58,7 @@ class PacketQueue(FiniteFifo):
     w: chex.Array
     priority: chex.Array  # 0 highest,
     bit_buffer: chex.Array
-    policy: SchedulingPolicy = SchedulingPolicy.FIFO
+    policy: int = SchedulingPolicy.FIFO.value
 
     def get_dynamic_fields(self) -> tuple:
         return (self.arrivals, self.pasprob, self.b, self.service_rate)

@@ -8,8 +8,8 @@ Welcome to Queuinx's documentation!
 
 Queuinx is an implementation of some queuing theory results in JAX that is differentiable and accelerator friendly.
 The particular focus is on networks of finite queues solved by fixed point algorithm of a RouteNetStep step.
-The API if designed to follow :meth:`jraph` and can be considered as a reference implementation of
-`RouteNet` neural architecture.
+The API is designed to follow `jraph <https://github.com/google-deepmind/jraph>` and can be considered as a reference implementation of
+*RouteNet* neural architecture.
 
 
 The use of JAX a machine learning framework as the basis for the implementation allows the use of
@@ -22,15 +22,21 @@ Instalation
 
 You can install Queuinx from pypi
 
-   ``pip install queuinx``
+.. code-block:: shell
+
+   pip install queuinx
+
 
 or the latest version form github
 
-   ``pip install git+https://github.com/krzysztofrusek/queuinx.git``
+.. code-block:: bash
+
+   pip install git+https://github.com/krzysztofrusek/queuinx.git
 
 
 **If you decide to apply the concepts presented or base on the provided code, please do refer our paper.**
 
+.. code-block:: bibtex
 
    @ARTICLE{9109574,
      author={K. {Rusek} and J. {Suárez-Varela} and P. {Almasan} and P. {Barlet-Ros} and A. {Cabellos-Aparicio}},

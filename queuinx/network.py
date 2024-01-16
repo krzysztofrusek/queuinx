@@ -23,8 +23,7 @@ from chex import ArrayTree, Array
 
 @chex.dataclass(frozen=True)
 class Network:
-    """
-    Class for keeping track of a queuing network.
+    """Class for keeping track of a queuing network.
 
     :param queues: The queues feature e.g. buffer size or service rate. It is a (nested) vector of shape ``[n_queues] + queue_shape``, where ``n_queues=sum(net.n_queues)``
 
@@ -68,8 +67,7 @@ class Network:
 
     @property
     def flow_lengths(self) -> Array:
-        """
-        Dynamic length of each flow in the network
+        """Dynamic length of each flow in the network
 
         :return: An array of flow lengths
         """
