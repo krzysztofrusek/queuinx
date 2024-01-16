@@ -81,35 +81,33 @@
 <h1>Welcome to Queuinx’s documentation!<a class="headerlink" href="#welcome-to-queuinx-s-documentation" title="Link to this heading"></a></h1>
 <p>Queuinx is an implementation of some queuing theory results in JAX that is differentiable and accelerator friendly.
 The particular focus is on networks of finite queues solved by fixed point algorithm of a RouteNetStep step.
-The API if designed to follow <code class="xref py py-meth docutils literal notranslate"><span class="pre">jraph()</span></code> and can be considered as a reference implementation of
-<cite>RouteNet</cite> neural architecture.</p>
+The API is designed to follow <cite>jraph &lt;https://github.com/google-deepmind/jraph&gt;</cite> and can be considered as a reference implementation of
+<em>RouteNet</em> neural architecture.</p>
 <p>The use of JAX a machine learning framework as the basis for the implementation allows the use of
 advanced computational tool like differentiable programming, compilation or support for accelerator.</p>
 <section id="instalation">
 <h2>Instalation<a class="headerlink" href="#instalation" title="Link to this heading"></a></h2>
 <p>You can install Queuinx from pypi</p>
-<blockquote>
-<div><p><code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">queuinx</span></code></p>
-</div></blockquote>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>pip<span class="w"> </span>install<span class="w"> </span>queuinx
+</pre></div>
+</div>
 <p>or the latest version form github</p>
-<blockquote>
-<div><p><code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">git+https://github.com/krzysztofrusek/queuinx.git</span></code></p>
-</div></blockquote>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip<span class="w"> </span>install<span class="w"> </span>git+https://github.com/krzysztofrusek/queuinx.git
+</pre></div>
+</div>
 <p><strong>If you decide to apply the concepts presented or base on the provided code, please do refer our paper.</strong></p>
-<blockquote>
-<div><dl class="simple">
-<dt>&#64;ARTICLE{9109574,</dt><dd><p>author={K. {Rusek} and J. {Suárez-Varela} and P. {Almasan} and P. {Barlet-Ros} and A. {Cabellos-Aparicio}},
-journal={IEEE Journal on Selected Areas in Communications},
-title={RouteNet: Leveraging Graph Neural Networks for Network Modeling and Optimization in SDN},
-year={2020},
-volume={38},
-number={10},
-pages={2260-2270},
-doi={10.1109/JSAC.2020.3000405}</p>
-</dd>
-</dl>
-<p>}</p>
-</div></blockquote>
+<div class="highlight-bibtex notranslate"><div class="highlight"><pre><span></span><span class="nc">@ARTICLE</span><span class="p">{</span><span class="nl">9109574</span><span class="p">,</span>
+<span class="w">  </span><span class="na">author</span><span class="p">=</span><span class="s">{K. {Rusek} and J. {Suárez-Varela} and P. {Almasan} and P. {Barlet-Ros} and A. {Cabellos-Aparicio}}</span><span class="p">,</span>
+<span class="w">  </span><span class="na">journal</span><span class="p">=</span><span class="s">{IEEE Journal on Selected Areas in Communications}</span><span class="p">,</span>
+<span class="w">  </span><span class="na">title</span><span class="p">=</span><span class="s">{RouteNet: Leveraging Graph Neural Networks for Network Modeling and Optimization in SDN}</span><span class="p">,</span>
+<span class="w">  </span><span class="na">year</span><span class="p">=</span><span class="s">{2020}</span><span class="p">,</span>
+<span class="w">  </span><span class="na">volume</span><span class="p">=</span><span class="s">{38}</span><span class="p">,</span>
+<span class="w">  </span><span class="na">number</span><span class="p">=</span><span class="s">{10}</span><span class="p">,</span>
+<span class="w">  </span><span class="na">pages</span><span class="p">=</span><span class="s">{2260-2270}</span><span class="p">,</span>
+<span class="w">  </span><span class="na">doi</span><span class="p">=</span><span class="s">{10.1109/JSAC.2020.3000405}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
 <div class="toctree-wrapper compound">
 </div>
 </section>
