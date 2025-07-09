@@ -41,8 +41,8 @@ classifiers = [
 dependencies = [
     "chex>=0.1.5",
     "distrax>=0.1.2",
-    "jax>=0.3.25",
-    "jaxlib>=0.3.25",
+    "jax>=0.6.0",
+    "jaxlib>=0.6.0",
     "jaxopt>=0.5.5"
 ]
 

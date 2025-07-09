@@ -55,7 +55,7 @@ def RouteNetStep(update_flow_fn: Seq2SeqFn, update_queue_fn: UpdateQueueFn,
     """
 
     def _ApplyModel(network: Network) -> Network:
-        template = jax.tree_map(lambda x: jnp.zeros_like(x[1, ...]),
+        template = tree.tree_map(lambda x: jnp.zeros_like(x[1, ...]),
                                 network.queues)
         lens = network.flow_lengths
         # See  https://github.com/deepmind/jraph/blob/51f5990104f7374492f8f3ea1cbc47feb411c69c/jraph/_src/models.py#L167
@@ -64,12 +64,12 @@ def RouteNetStep(update_flow_fn: Seq2SeqFn, update_queue_fn: UpdateQueueFn,
         chex.assert_rank(network.max_path_length_mask, 2)
         n_graph, max_path_length = network.max_path_length_mask.shape
 
-        for_scan = jax.tree_map(
+        for_scan = tree.tree_map(
             lambda x: jnp.broadcast_to(x, [s for s in
                                            [max_path_length, sum_n_flows] + [
                                                x.shape] if s]),
             template)
-        for_scan = jax.tree_map(
+        for_scan = tree.tree_map(
             lambda x, y: x.at[network.step, network.flow, ...].set(
                 y[network.queue, ...]),
             for_scan, network.queues)
@@ -86,12 +86,12 @@ def RouteNetStep(update_flow_fn: Seq2SeqFn, update_queue_fn: UpdateQueueFn,
         if update_queue_fn is None:
             updated_queues = network.queues
         else:
-            selected = jax.tree_map(
+            selected = tree.tree_map(
                 lambda x: x[network.step, network.flow, ...], partial_flow)
-            inflows = jax.tree_map(lambda x, f: f(x, network.queue,
+            inflows = jax.tree.map(lambda x, f: None if x is None else f(x, network.queue,
                                                   num_segments=sum_n_queues) if f else None,
                                    selected,
-                                   reducers)
+                                   reducers,is_leaf=lambda x: x is None)
             updated_queues = update_queue_fn(network.queues, inflows,
                                              network.interface,
                                              network.n_interfaces)

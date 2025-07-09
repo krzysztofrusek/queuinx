@@ -285,7 +285,7 @@ def ragged(f: Callable):
     @wraps(f)
     def wrapper(carry: RaggedCarry, x: ArrayTree) -> ArrayTree:
         out = f(carry.carry, x)
-        new_out = jax.tree_map(
+        new_out = jax.tree.map(
             lambda x, y: jnp.where(carry.step < carry.n_step, x, y), out,
             (carry.carry, out[1]))
         new_curry = RaggedCarry(

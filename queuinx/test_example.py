@@ -41,7 +41,7 @@ def example() -> Network:
         pasprob=jnp.ones(3)
     )
     flow, step, queue = jnp.where(R)
-    n_flow, n_step, n_queue = jax.tree_map(lambda x: jnp.asarray(x), R.shape)
+    n_flow, n_step, n_queue = jax.tree.map(lambda x: jnp.asarray(x), R.shape)
     n_route = jnp.array([len(flow)])
     n = Network(queues=q, flows=tm, flow=flow, step=step, queue=queue,
                 n_flows=n_flow[..., jnp.newaxis],
