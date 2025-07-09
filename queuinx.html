@@ -1,23 +1,21 @@
+
+
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" data-content_root="./">
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>API &mdash; Queuinx  documentation</title>
-      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=80d5e7a1" />
-      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=19f00094" />
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
 
   
-  <!--[if lt IE 9]>
-    <script src="_static/js/html5shiv.min.js"></script>
-  <![endif]-->
-  
-        <script src="_static/jquery.js?v=5d32c60e"></script>
-        <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-        <script src="_static/documentation_options.js?v=5929fcd5"></script>
-        <script src="_static/doctools.js?v=888ff710"></script>
-        <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="_static/jquery.js?v=5d32c60e"></script>
+      <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="_static/documentation_options.js?v=5929fcd5"></script>
+      <script src="_static/doctools.js?v=888ff710"></script>
+      <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
@@ -37,9 +35,6 @@
             Queuinx
               <img src="_static/logo.svg" class="logo" alt="Logo"/>
           </a>
-              <div class="version">
-                0.0.2dev
-              </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
     <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
@@ -55,18 +50,30 @@
 <li class="toctree-l2"><a class="reference internal" href="#queuinx.Network"><code class="docutils literal notranslate"><span class="pre">Network</span></code></a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#queuinx.Network.__init__"><code class="docutils literal notranslate"><span class="pre">Network.__init__()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="#queuinx.Network.flow_lengths"><code class="docutils literal notranslate"><span class="pre">Network.flow_lengths</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#queuinx.Network.items"><code class="docutils literal notranslate"><span class="pre">Network.items()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#queuinx.Network.keys"><code class="docutils literal notranslate"><span class="pre">Network.keys()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#queuinx.Network.values"><code class="docutils literal notranslate"><span class="pre">Network.values()</span></code></a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#queuinx.models.FiniteFifo"><code class="docutils literal notranslate"><span class="pre">FiniteFifo</span></code></a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#queuinx.models.FiniteFifo.__init__"><code class="docutils literal notranslate"><span class="pre">FiniteFifo.__init__()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#queuinx.models.FiniteFifo.items"><code class="docutils literal notranslate"><span class="pre">FiniteFifo.items()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#queuinx.models.FiniteFifo.keys"><code class="docutils literal notranslate"><span class="pre">FiniteFifo.keys()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#queuinx.models.FiniteFifo.values"><code class="docutils literal notranslate"><span class="pre">FiniteFifo.values()</span></code></a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#queuinx.models.PoissonFlow"><code class="docutils literal notranslate"><span class="pre">PoissonFlow</span></code></a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#queuinx.models.PoissonFlow.__init__"><code class="docutils literal notranslate"><span class="pre">PoissonFlow.__init__()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#queuinx.models.PoissonFlow.items"><code class="docutils literal notranslate"><span class="pre">PoissonFlow.items()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#queuinx.models.PoissonFlow.keys"><code class="docutils literal notranslate"><span class="pre">PoissonFlow.keys()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#queuinx.models.PoissonFlow.values"><code class="docutils literal notranslate"><span class="pre">PoissonFlow.values()</span></code></a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#queuinx.models.QoS"><code class="docutils literal notranslate"><span class="pre">QoS</span></code></a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#queuinx.models.QoS.__init__"><code class="docutils literal notranslate"><span class="pre">QoS.__init__()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#queuinx.models.QoS.items"><code class="docutils literal notranslate"><span class="pre">QoS.items()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#queuinx.models.QoS.keys"><code class="docutils literal notranslate"><span class="pre">QoS.keys()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#queuinx.models.QoS.values"><code class="docutils literal notranslate"><span class="pre">QoS.values()</span></code></a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#queuinx.models.Readout_mm1b"><code class="docutils literal notranslate"><span class="pre">Readout_mm1b()</span></code></a></li>
@@ -87,6 +94,9 @@
 <li class="toctree-l2"><a class="reference internal" href="#utilities">Utilities</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#queuinx.utils.RaggedCarry"><code class="docutils literal notranslate"><span class="pre">RaggedCarry</span></code></a><ul>
 <li class="toctree-l4"><a class="reference internal" href="#queuinx.utils.RaggedCarry.__init__"><code class="docutils literal notranslate"><span class="pre">RaggedCarry.__init__()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#queuinx.utils.RaggedCarry.items"><code class="docutils literal notranslate"><span class="pre">RaggedCarry.items()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#queuinx.utils.RaggedCarry.keys"><code class="docutils literal notranslate"><span class="pre">RaggedCarry.keys()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#queuinx.utils.RaggedCarry.values"><code class="docutils literal notranslate"><span class="pre">RaggedCarry.values()</span></code></a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="#queuinx.utils.batch"><code class="docutils literal notranslate"><span class="pre">batch()</span></code></a></li>
@@ -99,10 +109,16 @@
 <li class="toctree-l3"><a class="reference internal" href="#queuinx.experimental.models.FixedPoint"><code class="docutils literal notranslate"><span class="pre">FixedPoint()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="#queuinx.experimental.models.PacketFlow"><code class="docutils literal notranslate"><span class="pre">PacketFlow</span></code></a><ul>
 <li class="toctree-l4"><a class="reference internal" href="#queuinx.experimental.models.PacketFlow.__init__"><code class="docutils literal notranslate"><span class="pre">PacketFlow.__init__()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#queuinx.experimental.models.PacketFlow.items"><code class="docutils literal notranslate"><span class="pre">PacketFlow.items()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#queuinx.experimental.models.PacketFlow.keys"><code class="docutils literal notranslate"><span class="pre">PacketFlow.keys()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#queuinx.experimental.models.PacketFlow.values"><code class="docutils literal notranslate"><span class="pre">PacketFlow.values()</span></code></a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="#queuinx.experimental.models.PacketQueue"><code class="docutils literal notranslate"><span class="pre">PacketQueue</span></code></a><ul>
 <li class="toctree-l4"><a class="reference internal" href="#queuinx.experimental.models.PacketQueue.__init__"><code class="docutils literal notranslate"><span class="pre">PacketQueue.__init__()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#queuinx.experimental.models.PacketQueue.items"><code class="docutils literal notranslate"><span class="pre">PacketQueue.items()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#queuinx.experimental.models.PacketQueue.keys"><code class="docutils literal notranslate"><span class="pre">PacketQueue.keys()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#queuinx.experimental.models.PacketQueue.values"><code class="docutils literal notranslate"><span class="pre">PacketQueue.values()</span></code></a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="#queuinx.experimental.models.Readout_mm1"><code class="docutils literal notranslate"><span class="pre">Readout_mm1()</span></code></a></li>
@@ -155,8 +171,8 @@ on <a class="reference internal" href="#queuinx.Network" title="queuinx.Network"
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>update_flow_fn</strong> (<em>Callable</em><em>[</em><em>[</em><a class="reference internal" href="#queuinx.utils.RaggedCarry" title="queuinx.utils.RaggedCarry"><em>RaggedCarry</em></a><em>, </em><em>Array</em><em> | </em><em>ndarray</em><em> | </em><em>bool_</em><em> | </em><em>number</em><em> | </em><em>Iterable</em><em>[</em><em>Array</em><em> | </em><em>ndarray</em><em> | </em><em>bool_</em><em> | </em><em>number</em><em> | </em><em>Iterable</em><em>[</em><em>ArrayTree</em><em>] </em><em>| </em><em>Mapping</em><em>[</em><em>Any</em><em>, </em><em>ArrayTree</em><em>]</em><em>] </em><em>| </em><em>Mapping</em><em>[</em><em>Any</em><em>, </em><em>Array</em><em> | </em><em>ndarray</em><em> | </em><em>bool_</em><em> | </em><em>number</em><em> | </em><em>Iterable</em><em>[</em><em>ArrayTree</em><em>] </em><em>| </em><em>Mapping</em><em>[</em><em>Any</em><em>, </em><em>ArrayTree</em><em>]</em><em>]</em><em>]</em><em>, </em><em>Tuple</em><em>[</em><a class="reference internal" href="#queuinx.utils.RaggedCarry" title="queuinx.utils.RaggedCarry"><em>RaggedCarry</em></a><em>, </em><em>Array</em><em> | </em><em>ndarray</em><em> | </em><em>bool_</em><em> | </em><em>number</em><em> | </em><em>Iterable</em><em>[</em><em>Array</em><em> | </em><em>ndarray</em><em> | </em><em>bool_</em><em> | </em><em>number</em><em> | </em><em>Iterable</em><em>[</em><em>ArrayTree</em><em>] </em><em>| </em><em>Mapping</em><em>[</em><em>Any</em><em>, </em><em>ArrayTree</em><em>]</em><em>] </em><em>| </em><em>Mapping</em><em>[</em><em>Any</em><em>, </em><em>Array</em><em> | </em><em>ndarray</em><em> | </em><em>bool_</em><em> | </em><em>number</em><em> | </em><em>Iterable</em><em>[</em><em>ArrayTree</em><em>] </em><em>| </em><em>Mapping</em><em>[</em><em>Any</em><em>, </em><em>ArrayTree</em><em>]</em><em>]</em><em>]</em><em>]</em>) – function implementing scan like operation over the queues along a flow</p></li>
-<li><p><strong>update_queue_fn</strong> (<em>Callable</em><em>[</em><em>[</em><em>Array</em><em> | </em><em>ndarray</em><em> | </em><em>bool_</em><em> | </em><em>number</em><em> | </em><em>Iterable</em><em>[</em><em>Array</em><em> | </em><em>ndarray</em><em> | </em><em>bool_</em><em> | </em><em>number</em><em> | </em><em>Iterable</em><em>[</em><em>ArrayTree</em><em>] </em><em>| </em><em>Mapping</em><em>[</em><em>Any</em><em>, </em><em>ArrayTree</em><em>]</em><em>] </em><em>| </em><em>Mapping</em><em>[</em><em>Any</em><em>, </em><em>Array</em><em> | </em><em>ndarray</em><em> | </em><em>bool_</em><em> | </em><em>number</em><em> | </em><em>Iterable</em><em>[</em><em>ArrayTree</em><em>] </em><em>| </em><em>Mapping</em><em>[</em><em>Any</em><em>, </em><em>ArrayTree</em><em>]</em><em>]</em><em>, </em><em>Array</em><em> | </em><em>ndarray</em><em> | </em><em>bool_</em><em> | </em><em>number</em><em> | </em><em>Iterable</em><em>[</em><em>Array</em><em> | </em><em>ndarray</em><em> | </em><em>bool_</em><em> | </em><em>number</em><em> | </em><em>Iterable</em><em>[</em><em>ArrayTree</em><em>] </em><em>| </em><em>Mapping</em><em>[</em><em>Any</em><em>, </em><em>ArrayTree</em><em>]</em><em>] </em><em>| </em><em>Mapping</em><em>[</em><em>Any</em><em>, </em><em>Array</em><em> | </em><em>ndarray</em><em> | </em><em>bool_</em><em> | </em><em>number</em><em> | </em><em>Iterable</em><em>[</em><em>ArrayTree</em><em>] </em><em>| </em><em>Mapping</em><em>[</em><em>Any</em><em>, </em><em>ArrayTree</em><em>]</em><em>]</em><em>, </em><em>Array</em><em>, </em><em>Array</em><em>]</em><em>, </em><em>Array</em><em> | </em><em>ndarray</em><em> | </em><em>bool_</em><em> | </em><em>number</em><em> | </em><em>Iterable</em><em>[</em><em>Array</em><em> | </em><em>ndarray</em><em> | </em><em>bool_</em><em> | </em><em>number</em><em> | </em><em>Iterable</em><em>[</em><em>ArrayTree</em><em>] </em><em>| </em><em>Mapping</em><em>[</em><em>Any</em><em>, </em><em>ArrayTree</em><em>]</em><em>] </em><em>| </em><em>Mapping</em><em>[</em><em>Any</em><em>, </em><em>Array</em><em> | </em><em>ndarray</em><em> | </em><em>bool_</em><em> | </em><em>number</em><em> | </em><em>Iterable</em><em>[</em><em>ArrayTree</em><em>] </em><em>| </em><em>Mapping</em><em>[</em><em>Any</em><em>, </em><em>ArrayTree</em><em>]</em><em>]</em><em>]</em>) – function used to update the queues</p></li>
+<li><p><strong>update_flow_fn</strong> (<em>Callable</em><em>[</em><em>[</em><a class="reference internal" href="#queuinx.utils.RaggedCarry" title="queuinx.utils.RaggedCarry"><em>RaggedCarry</em></a><em>, </em><em>Array</em><em> | </em><em>ndarray</em><em> | </em><em>bool</em><em> | </em><em>number</em><em> | </em><em>Iterable</em><em>[</em><em>Array</em><em> | </em><em>ndarray</em><em> | </em><em>bool</em><em> | </em><em>number</em><em> | </em><em>Iterable</em><em>[</em><em>ArrayTree</em><em>] </em><em>| </em><em>Mapping</em><em>[</em><em>Any</em><em>, </em><em>ArrayTree</em><em>]</em><em>] </em><em>| </em><em>Mapping</em><em>[</em><em>Any</em><em>, </em><em>Array</em><em> | </em><em>ndarray</em><em> | </em><em>bool</em><em> | </em><em>number</em><em> | </em><em>Iterable</em><em>[</em><em>ArrayTree</em><em>] </em><em>| </em><em>Mapping</em><em>[</em><em>Any</em><em>, </em><em>ArrayTree</em><em>]</em><em>]</em><em>]</em><em>, </em><em>Tuple</em><em>[</em><a class="reference internal" href="#queuinx.utils.RaggedCarry" title="queuinx.utils.RaggedCarry"><em>RaggedCarry</em></a><em>, </em><em>Array</em><em> | </em><em>ndarray</em><em> | </em><em>bool</em><em> | </em><em>number</em><em> | </em><em>Iterable</em><em>[</em><em>Array</em><em> | </em><em>ndarray</em><em> | </em><em>bool</em><em> | </em><em>number</em><em> | </em><em>Iterable</em><em>[</em><em>ArrayTree</em><em>] </em><em>| </em><em>Mapping</em><em>[</em><em>Any</em><em>, </em><em>ArrayTree</em><em>]</em><em>] </em><em>| </em><em>Mapping</em><em>[</em><em>Any</em><em>, </em><em>Array</em><em> | </em><em>ndarray</em><em> | </em><em>bool</em><em> | </em><em>number</em><em> | </em><em>Iterable</em><em>[</em><em>ArrayTree</em><em>] </em><em>| </em><em>Mapping</em><em>[</em><em>Any</em><em>, </em><em>ArrayTree</em><em>]</em><em>]</em><em>]</em><em>]</em>) – function implementing scan like operation over the queues along a flow</p></li>
+<li><p><strong>update_queue_fn</strong> (<em>Callable</em><em>[</em><em>[</em><em>Array</em><em> | </em><em>ndarray</em><em> | </em><em>bool</em><em> | </em><em>number</em><em> | </em><em>Iterable</em><em>[</em><em>Array</em><em> | </em><em>ndarray</em><em> | </em><em>bool</em><em> | </em><em>number</em><em> | </em><em>Iterable</em><em>[</em><em>ArrayTree</em><em>] </em><em>| </em><em>Mapping</em><em>[</em><em>Any</em><em>, </em><em>ArrayTree</em><em>]</em><em>] </em><em>| </em><em>Mapping</em><em>[</em><em>Any</em><em>, </em><em>Array</em><em> | </em><em>ndarray</em><em> | </em><em>bool</em><em> | </em><em>number</em><em> | </em><em>Iterable</em><em>[</em><em>ArrayTree</em><em>] </em><em>| </em><em>Mapping</em><em>[</em><em>Any</em><em>, </em><em>ArrayTree</em><em>]</em><em>]</em><em>, </em><em>Array</em><em> | </em><em>ndarray</em><em> | </em><em>bool</em><em> | </em><em>number</em><em> | </em><em>Iterable</em><em>[</em><em>Array</em><em> | </em><em>ndarray</em><em> | </em><em>bool</em><em> | </em><em>number</em><em> | </em><em>Iterable</em><em>[</em><em>ArrayTree</em><em>] </em><em>| </em><em>Mapping</em><em>[</em><em>Any</em><em>, </em><em>ArrayTree</em><em>]</em><em>] </em><em>| </em><em>Mapping</em><em>[</em><em>Any</em><em>, </em><em>Array</em><em> | </em><em>ndarray</em><em> | </em><em>bool</em><em> | </em><em>number</em><em> | </em><em>Iterable</em><em>[</em><em>ArrayTree</em><em>] </em><em>| </em><em>Mapping</em><em>[</em><em>Any</em><em>, </em><em>ArrayTree</em><em>]</em><em>]</em><em>, </em><em>Array</em><em>, </em><em>Array</em><em>]</em><em>, </em><em>Array</em><em> | </em><em>ndarray</em><em> | </em><em>bool</em><em> | </em><em>number</em><em> | </em><em>Iterable</em><em>[</em><em>Array</em><em> | </em><em>ndarray</em><em> | </em><em>bool</em><em> | </em><em>number</em><em> | </em><em>Iterable</em><em>[</em><em>ArrayTree</em><em>] </em><em>| </em><em>Mapping</em><em>[</em><em>Any</em><em>, </em><em>ArrayTree</em><em>]</em><em>] </em><em>| </em><em>Mapping</em><em>[</em><em>Any</em><em>, </em><em>Array</em><em> | </em><em>ndarray</em><em> | </em><em>bool</em><em> | </em><em>number</em><em> | </em><em>Iterable</em><em>[</em><em>ArrayTree</em><em>] </em><em>| </em><em>Mapping</em><em>[</em><em>Any</em><em>, </em><em>ArrayTree</em><em>]</em><em>]</em><em>]</em>) – function used to update the queues</p></li>
 <li><p><strong>reducers</strong> (<em>Any</em>) – A tree of callable used to reduce the flows</p></li>
 </ul>
 </dd>
@@ -196,17 +212,17 @@ on <a class="reference internal" href="#queuinx.Network" title="queuinx.Network"
 <dd><dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>queues</strong> (<em>Array</em><em> | </em><em>ndarray</em><em> | </em><em>bool_</em><em> | </em><em>number</em><em> | </em><em>Iterable</em><em>[</em><em>Array</em><em> | </em><em>ndarray</em><em> | </em><em>bool_</em><em> | </em><em>number</em><em> | </em><em>Iterable</em><em>[</em><em>ArrayTree</em><em>] </em><em>| </em><em>Mapping</em><em>[</em><em>Any</em><em>, </em><em>ArrayTree</em><em>]</em><em>] </em><em>| </em><em>Mapping</em><em>[</em><em>Any</em><em>, </em><em>Array</em><em> | </em><em>ndarray</em><em> | </em><em>bool_</em><em> | </em><em>number</em><em> | </em><em>Iterable</em><em>[</em><em>ArrayTree</em><em>] </em><em>| </em><em>Mapping</em><em>[</em><em>Any</em><em>, </em><em>ArrayTree</em><em>]</em><em>]</em>) – </p></li>
-<li><p><strong>flows</strong> (<em>Array</em><em> | </em><em>ndarray</em><em> | </em><em>bool_</em><em> | </em><em>number</em><em> | </em><em>Iterable</em><em>[</em><em>Array</em><em> | </em><em>ndarray</em><em> | </em><em>bool_</em><em> | </em><em>number</em><em> | </em><em>Iterable</em><em>[</em><em>ArrayTree</em><em>] </em><em>| </em><em>Mapping</em><em>[</em><em>Any</em><em>, </em><em>ArrayTree</em><em>]</em><em>] </em><em>| </em><em>Mapping</em><em>[</em><em>Any</em><em>, </em><em>Array</em><em> | </em><em>ndarray</em><em> | </em><em>bool_</em><em> | </em><em>number</em><em> | </em><em>Iterable</em><em>[</em><em>ArrayTree</em><em>] </em><em>| </em><em>Mapping</em><em>[</em><em>Any</em><em>, </em><em>ArrayTree</em><em>]</em><em>]</em>) – </p></li>
-<li><p><strong>flow</strong> (<em>Array</em><em> | </em><em>ndarray</em><em> | </em><em>bool_</em><em> | </em><em>number</em>) – </p></li>
-<li><p><strong>step</strong> (<em>Array</em><em> | </em><em>ndarray</em><em> | </em><em>bool_</em><em> | </em><em>number</em>) – </p></li>
-<li><p><strong>queue</strong> (<em>Array</em><em> | </em><em>ndarray</em><em> | </em><em>bool_</em><em> | </em><em>number</em>) – </p></li>
-<li><p><strong>n_flows</strong> (<em>Array</em><em> | </em><em>ndarray</em><em> | </em><em>bool_</em><em> | </em><em>number</em>) – </p></li>
-<li><p><strong>max_path_length_mask</strong> (<em>Array</em><em> | </em><em>ndarray</em><em> | </em><em>bool_</em><em> | </em><em>number</em>) – </p></li>
-<li><p><strong>n_queues</strong> (<em>Array</em><em> | </em><em>ndarray</em><em> | </em><em>bool_</em><em> | </em><em>number</em>) – </p></li>
-<li><p><strong>n_routes</strong> (<em>Array</em><em> | </em><em>ndarray</em><em> | </em><em>bool_</em><em> | </em><em>number</em>) – </p></li>
-<li><p><strong>interface</strong> (<em>Array</em><em> | </em><em>ndarray</em><em> | </em><em>bool_</em><em> | </em><em>number</em><em> | </em><em>None</em>) – </p></li>
-<li><p><strong>n_interfaces</strong> (<em>Array</em><em> | </em><em>ndarray</em><em> | </em><em>bool_</em><em> | </em><em>number</em><em> | </em><em>None</em>) – </p></li>
+<li><p><strong>queues</strong> (<em>Array</em><em> | </em><em>ndarray</em><em> | </em><em>bool</em><em> | </em><em>number</em><em> | </em><em>Iterable</em><em>[</em><em>Array</em><em> | </em><em>ndarray</em><em> | </em><em>bool</em><em> | </em><em>number</em><em> | </em><em>Iterable</em><em>[</em><em>ArrayTree</em><em>] </em><em>| </em><em>Mapping</em><em>[</em><em>Any</em><em>, </em><em>ArrayTree</em><em>]</em><em>] </em><em>| </em><em>Mapping</em><em>[</em><em>Any</em><em>, </em><em>Array</em><em> | </em><em>ndarray</em><em> | </em><em>bool</em><em> | </em><em>number</em><em> | </em><em>Iterable</em><em>[</em><em>ArrayTree</em><em>] </em><em>| </em><em>Mapping</em><em>[</em><em>Any</em><em>, </em><em>ArrayTree</em><em>]</em><em>]</em>) – </p></li>
+<li><p><strong>flows</strong> (<em>Array</em><em> | </em><em>ndarray</em><em> | </em><em>bool</em><em> | </em><em>number</em><em> | </em><em>Iterable</em><em>[</em><em>Array</em><em> | </em><em>ndarray</em><em> | </em><em>bool</em><em> | </em><em>number</em><em> | </em><em>Iterable</em><em>[</em><em>ArrayTree</em><em>] </em><em>| </em><em>Mapping</em><em>[</em><em>Any</em><em>, </em><em>ArrayTree</em><em>]</em><em>] </em><em>| </em><em>Mapping</em><em>[</em><em>Any</em><em>, </em><em>Array</em><em> | </em><em>ndarray</em><em> | </em><em>bool</em><em> | </em><em>number</em><em> | </em><em>Iterable</em><em>[</em><em>ArrayTree</em><em>] </em><em>| </em><em>Mapping</em><em>[</em><em>Any</em><em>, </em><em>ArrayTree</em><em>]</em><em>]</em>) – </p></li>
+<li><p><strong>flow</strong> (<em>Array</em><em> | </em><em>ndarray</em><em> | </em><em>bool</em><em> | </em><em>number</em>) – </p></li>
+<li><p><strong>step</strong> (<em>Array</em><em> | </em><em>ndarray</em><em> | </em><em>bool</em><em> | </em><em>number</em>) – </p></li>
+<li><p><strong>queue</strong> (<em>Array</em><em> | </em><em>ndarray</em><em> | </em><em>bool</em><em> | </em><em>number</em>) – </p></li>
+<li><p><strong>n_flows</strong> (<em>Array</em><em> | </em><em>ndarray</em><em> | </em><em>bool</em><em> | </em><em>number</em>) – </p></li>
+<li><p><strong>max_path_length_mask</strong> (<em>Array</em><em> | </em><em>ndarray</em><em> | </em><em>bool</em><em> | </em><em>number</em>) – </p></li>
+<li><p><strong>n_queues</strong> (<em>Array</em><em> | </em><em>ndarray</em><em> | </em><em>bool</em><em> | </em><em>number</em>) – </p></li>
+<li><p><strong>n_routes</strong> (<em>Array</em><em> | </em><em>ndarray</em><em> | </em><em>bool</em><em> | </em><em>number</em>) – </p></li>
+<li><p><strong>interface</strong> (<em>Array</em><em> | </em><em>ndarray</em><em> | </em><em>bool</em><em> | </em><em>number</em><em> | </em><em>None</em>) – </p></li>
+<li><p><strong>n_interfaces</strong> (<em>Array</em><em> | </em><em>ndarray</em><em> | </em><em>bool</em><em> | </em><em>number</em><em> | </em><em>None</em>) – </p></li>
 </ul>
 </dd>
 <dt class="field-even">Return type<span class="colon">:</span></dt>
@@ -217,7 +233,7 @@ on <a class="reference internal" href="#queuinx.Network" title="queuinx.Network"
 
 <dl class="py property">
 <dt class="sig sig-object py" id="queuinx.Network.flow_lengths">
-<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">flow_lengths</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Array</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">ndarray</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">bool_</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">number</span></em><a class="headerlink" href="#queuinx.Network.flow_lengths" title="Link to this definition"></a></dt>
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">flow_lengths</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Array</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">ndarray</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">bool</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">number</span></em><a class="headerlink" href="#queuinx.Network.flow_lengths" title="Link to this definition"></a></dt>
 <dd><p>Dynamic length of each flow in the network</p>
 <dl class="field-list simple">
 <dt class="field-odd">Returns<span class="colon">:</span></dt>
@@ -225,6 +241,21 @@ on <a class="reference internal" href="#queuinx.Network" title="queuinx.Network"
 </dd>
 </dl>
 </dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="queuinx.Network.items">
+<span class="sig-name descname"><span class="pre">items</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">a</span> <span class="pre">set-like</span> <span class="pre">object</span> <span class="pre">providing</span> <span class="pre">a</span> <span class="pre">view</span> <span class="pre">on</span> <span class="pre">D's</span> <span class="pre">items</span></span></span><a class="headerlink" href="#queuinx.Network.items" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="queuinx.Network.keys">
+<span class="sig-name descname"><span class="pre">keys</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">a</span> <span class="pre">set-like</span> <span class="pre">object</span> <span class="pre">providing</span> <span class="pre">a</span> <span class="pre">view</span> <span class="pre">on</span> <span class="pre">D's</span> <span class="pre">keys</span></span></span><a class="headerlink" href="#queuinx.Network.keys" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="queuinx.Network.values">
+<span class="sig-name descname"><span class="pre">values</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">an</span> <span class="pre">object</span> <span class="pre">providing</span> <span class="pre">a</span> <span class="pre">view</span> <span class="pre">on</span> <span class="pre">D's</span> <span class="pre">values</span></span></span><a class="headerlink" href="#queuinx.Network.values" title="Link to this definition"></a></dt>
+<dd></dd></dl>
 
 </dd></dl>
 
@@ -240,10 +271,10 @@ on <a class="reference internal" href="#queuinx.Network" title="queuinx.Network"
 <dd><dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>b</strong> (<em>Array</em><em> | </em><em>ndarray</em><em> | </em><em>bool_</em><em> | </em><em>number</em>) – </p></li>
-<li><p><strong>service_rate</strong> (<em>Array</em><em> | </em><em>ndarray</em><em> | </em><em>bool_</em><em> | </em><em>number</em>) – </p></li>
-<li><p><strong>arrivals</strong> (<em>Array</em><em> | </em><em>ndarray</em><em> | </em><em>bool_</em><em> | </em><em>number</em>) – </p></li>
-<li><p><strong>pasprob</strong> (<em>Array</em><em> | </em><em>ndarray</em><em> | </em><em>bool_</em><em> | </em><em>number</em>) – </p></li>
+<li><p><strong>b</strong> (<em>Array</em><em> | </em><em>ndarray</em><em> | </em><em>bool</em><em> | </em><em>number</em>) – </p></li>
+<li><p><strong>service_rate</strong> (<em>Array</em><em> | </em><em>ndarray</em><em> | </em><em>bool</em><em> | </em><em>number</em>) – </p></li>
+<li><p><strong>arrivals</strong> (<em>Array</em><em> | </em><em>ndarray</em><em> | </em><em>bool</em><em> | </em><em>number</em>) – </p></li>
+<li><p><strong>pasprob</strong> (<em>Array</em><em> | </em><em>ndarray</em><em> | </em><em>bool</em><em> | </em><em>number</em>) – </p></li>
 </ul>
 </dd>
 <dt class="field-even">Return type<span class="colon">:</span></dt>
@@ -251,6 +282,21 @@ on <a class="reference internal" href="#queuinx.Network" title="queuinx.Network"
 </dd>
 </dl>
 </dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="queuinx.models.FiniteFifo.items">
+<span class="sig-name descname"><span class="pre">items</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">a</span> <span class="pre">set-like</span> <span class="pre">object</span> <span class="pre">providing</span> <span class="pre">a</span> <span class="pre">view</span> <span class="pre">on</span> <span class="pre">D's</span> <span class="pre">items</span></span></span><a class="headerlink" href="#queuinx.models.FiniteFifo.items" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="queuinx.models.FiniteFifo.keys">
+<span class="sig-name descname"><span class="pre">keys</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">a</span> <span class="pre">set-like</span> <span class="pre">object</span> <span class="pre">providing</span> <span class="pre">a</span> <span class="pre">view</span> <span class="pre">on</span> <span class="pre">D's</span> <span class="pre">keys</span></span></span><a class="headerlink" href="#queuinx.models.FiniteFifo.keys" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="queuinx.models.FiniteFifo.values">
+<span class="sig-name descname"><span class="pre">values</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">an</span> <span class="pre">object</span> <span class="pre">providing</span> <span class="pre">a</span> <span class="pre">view</span> <span class="pre">on</span> <span class="pre">D's</span> <span class="pre">values</span></span></span><a class="headerlink" href="#queuinx.models.FiniteFifo.values" title="Link to this definition"></a></dt>
+<dd></dd></dl>
 
 </dd></dl>
 
@@ -263,13 +309,28 @@ on <a class="reference internal" href="#queuinx.Network" title="queuinx.Network"
 <span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">rate</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#queuinx.models.PoissonFlow.__init__" title="Link to this definition"></a></dt>
 <dd><dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>rate</strong> (<em>Array</em><em> | </em><em>ndarray</em><em> | </em><em>bool_</em><em> | </em><em>number</em>) – </p>
+<dd class="field-odd"><p><strong>rate</strong> (<em>Array</em><em> | </em><em>ndarray</em><em> | </em><em>bool</em><em> | </em><em>number</em>) – </p>
 </dd>
 <dt class="field-even">Return type<span class="colon">:</span></dt>
 <dd class="field-even"><p>None</p>
 </dd>
 </dl>
 </dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="queuinx.models.PoissonFlow.items">
+<span class="sig-name descname"><span class="pre">items</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">a</span> <span class="pre">set-like</span> <span class="pre">object</span> <span class="pre">providing</span> <span class="pre">a</span> <span class="pre">view</span> <span class="pre">on</span> <span class="pre">D's</span> <span class="pre">items</span></span></span><a class="headerlink" href="#queuinx.models.PoissonFlow.items" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="queuinx.models.PoissonFlow.keys">
+<span class="sig-name descname"><span class="pre">keys</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">a</span> <span class="pre">set-like</span> <span class="pre">object</span> <span class="pre">providing</span> <span class="pre">a</span> <span class="pre">view</span> <span class="pre">on</span> <span class="pre">D's</span> <span class="pre">keys</span></span></span><a class="headerlink" href="#queuinx.models.PoissonFlow.keys" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="queuinx.models.PoissonFlow.values">
+<span class="sig-name descname"><span class="pre">values</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">an</span> <span class="pre">object</span> <span class="pre">providing</span> <span class="pre">a</span> <span class="pre">view</span> <span class="pre">on</span> <span class="pre">D's</span> <span class="pre">values</span></span></span><a class="headerlink" href="#queuinx.models.PoissonFlow.values" title="Link to this definition"></a></dt>
+<dd></dd></dl>
 
 </dd></dl>
 
@@ -292,9 +353,9 @@ on <a class="reference internal" href="#queuinx.Network" title="queuinx.Network"
 <dd><dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>delay</strong> (<em>Array</em><em> | </em><em>ndarray</em><em> | </em><em>bool_</em><em> | </em><em>number</em>) – </p></li>
-<li><p><strong>jitter</strong> (<em>Array</em><em> | </em><em>ndarray</em><em> | </em><em>bool_</em><em> | </em><em>number</em><em> | </em><em>None</em>) – </p></li>
-<li><p><strong>loss</strong> (<em>Array</em><em> | </em><em>ndarray</em><em> | </em><em>bool_</em><em> | </em><em>number</em>) – </p></li>
+<li><p><strong>delay</strong> (<em>Array</em><em> | </em><em>ndarray</em><em> | </em><em>bool</em><em> | </em><em>number</em>) – </p></li>
+<li><p><strong>jitter</strong> (<em>Array</em><em> | </em><em>ndarray</em><em> | </em><em>bool</em><em> | </em><em>number</em><em> | </em><em>None</em>) – </p></li>
+<li><p><strong>loss</strong> (<em>Array</em><em> | </em><em>ndarray</em><em> | </em><em>bool</em><em> | </em><em>number</em>) – </p></li>
 </ul>
 </dd>
 <dt class="field-even">Return type<span class="colon">:</span></dt>
@@ -302,6 +363,21 @@ on <a class="reference internal" href="#queuinx.Network" title="queuinx.Network"
 </dd>
 </dl>
 </dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="queuinx.models.QoS.items">
+<span class="sig-name descname"><span class="pre">items</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">a</span> <span class="pre">set-like</span> <span class="pre">object</span> <span class="pre">providing</span> <span class="pre">a</span> <span class="pre">view</span> <span class="pre">on</span> <span class="pre">D's</span> <span class="pre">items</span></span></span><a class="headerlink" href="#queuinx.models.QoS.items" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="queuinx.models.QoS.keys">
+<span class="sig-name descname"><span class="pre">keys</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">a</span> <span class="pre">set-like</span> <span class="pre">object</span> <span class="pre">providing</span> <span class="pre">a</span> <span class="pre">view</span> <span class="pre">on</span> <span class="pre">D's</span> <span class="pre">keys</span></span></span><a class="headerlink" href="#queuinx.models.QoS.keys" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="queuinx.models.QoS.values">
+<span class="sig-name descname"><span class="pre">values</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">an</span> <span class="pre">object</span> <span class="pre">providing</span> <span class="pre">a</span> <span class="pre">view</span> <span class="pre">on</span> <span class="pre">D's</span> <span class="pre">values</span></span></span><a class="headerlink" href="#queuinx.models.QoS.values" title="Link to this definition"></a></dt>
+<dd></dd></dl>
 
 </dd></dl>
 
@@ -329,8 +405,8 @@ on <a class="reference internal" href="#queuinx.Network" title="queuinx.Network"
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>update_flow_fn</strong> (<em>Callable</em><em>[</em><em>[</em><a class="reference internal" href="#queuinx.utils.RaggedCarry" title="queuinx.utils.RaggedCarry"><em>RaggedCarry</em></a><em>, </em><em>Array</em><em> | </em><em>ndarray</em><em> | </em><em>bool_</em><em> | </em><em>number</em><em> | </em><em>Iterable</em><em>[</em><em>Array</em><em> | </em><em>ndarray</em><em> | </em><em>bool_</em><em> | </em><em>number</em><em> | </em><em>Iterable</em><em>[</em><em>ArrayTree</em><em>] </em><em>| </em><em>Mapping</em><em>[</em><em>Any</em><em>, </em><em>ArrayTree</em><em>]</em><em>] </em><em>| </em><em>Mapping</em><em>[</em><em>Any</em><em>, </em><em>Array</em><em> | </em><em>ndarray</em><em> | </em><em>bool_</em><em> | </em><em>number</em><em> | </em><em>Iterable</em><em>[</em><em>ArrayTree</em><em>] </em><em>| </em><em>Mapping</em><em>[</em><em>Any</em><em>, </em><em>ArrayTree</em><em>]</em><em>]</em><em>]</em><em>, </em><em>Tuple</em><em>[</em><a class="reference internal" href="#queuinx.utils.RaggedCarry" title="queuinx.utils.RaggedCarry"><em>RaggedCarry</em></a><em>, </em><em>Array</em><em> | </em><em>ndarray</em><em> | </em><em>bool_</em><em> | </em><em>number</em><em> | </em><em>Iterable</em><em>[</em><em>Array</em><em> | </em><em>ndarray</em><em> | </em><em>bool_</em><em> | </em><em>number</em><em> | </em><em>Iterable</em><em>[</em><em>ArrayTree</em><em>] </em><em>| </em><em>Mapping</em><em>[</em><em>Any</em><em>, </em><em>ArrayTree</em><em>]</em><em>] </em><em>| </em><em>Mapping</em><em>[</em><em>Any</em><em>, </em><em>Array</em><em> | </em><em>ndarray</em><em> | </em><em>bool_</em><em> | </em><em>number</em><em> | </em><em>Iterable</em><em>[</em><em>ArrayTree</em><em>] </em><em>| </em><em>Mapping</em><em>[</em><em>Any</em><em>, </em><em>ArrayTree</em><em>]</em><em>]</em><em>]</em><em>]</em>) – function implementing scan like operation over the queues along a flow</p></li>
-<li><p><strong>update_queue_fn</strong> (<em>Callable</em><em>[</em><em>[</em><em>Array</em><em> | </em><em>ndarray</em><em> | </em><em>bool_</em><em> | </em><em>number</em><em> | </em><em>Iterable</em><em>[</em><em>Array</em><em> | </em><em>ndarray</em><em> | </em><em>bool_</em><em> | </em><em>number</em><em> | </em><em>Iterable</em><em>[</em><em>ArrayTree</em><em>] </em><em>| </em><em>Mapping</em><em>[</em><em>Any</em><em>, </em><em>ArrayTree</em><em>]</em><em>] </em><em>| </em><em>Mapping</em><em>[</em><em>Any</em><em>, </em><em>Array</em><em> | </em><em>ndarray</em><em> | </em><em>bool_</em><em> | </em><em>number</em><em> | </em><em>Iterable</em><em>[</em><em>ArrayTree</em><em>] </em><em>| </em><em>Mapping</em><em>[</em><em>Any</em><em>, </em><em>ArrayTree</em><em>]</em><em>]</em><em>, </em><em>Array</em><em> | </em><em>ndarray</em><em> | </em><em>bool_</em><em> | </em><em>number</em><em> | </em><em>Iterable</em><em>[</em><em>Array</em><em> | </em><em>ndarray</em><em> | </em><em>bool_</em><em> | </em><em>number</em><em> | </em><em>Iterable</em><em>[</em><em>ArrayTree</em><em>] </em><em>| </em><em>Mapping</em><em>[</em><em>Any</em><em>, </em><em>ArrayTree</em><em>]</em><em>] </em><em>| </em><em>Mapping</em><em>[</em><em>Any</em><em>, </em><em>Array</em><em> | </em><em>ndarray</em><em> | </em><em>bool_</em><em> | </em><em>number</em><em> | </em><em>Iterable</em><em>[</em><em>ArrayTree</em><em>] </em><em>| </em><em>Mapping</em><em>[</em><em>Any</em><em>, </em><em>ArrayTree</em><em>]</em><em>]</em><em>, </em><em>Array</em><em>, </em><em>Array</em><em>]</em><em>, </em><em>Array</em><em> | </em><em>ndarray</em><em> | </em><em>bool_</em><em> | </em><em>number</em><em> | </em><em>Iterable</em><em>[</em><em>Array</em><em> | </em><em>ndarray</em><em> | </em><em>bool_</em><em> | </em><em>number</em><em> | </em><em>Iterable</em><em>[</em><em>ArrayTree</em><em>] </em><em>| </em><em>Mapping</em><em>[</em><em>Any</em><em>, </em><em>ArrayTree</em><em>]</em><em>] </em><em>| </em><em>Mapping</em><em>[</em><em>Any</em><em>, </em><em>Array</em><em> | </em><em>ndarray</em><em> | </em><em>bool_</em><em> | </em><em>number</em><em> | </em><em>Iterable</em><em>[</em><em>ArrayTree</em><em>] </em><em>| </em><em>Mapping</em><em>[</em><em>Any</em><em>, </em><em>ArrayTree</em><em>]</em><em>]</em><em>]</em>) – function used to update the queues</p></li>
+<li><p><strong>update_flow_fn</strong> (<em>Callable</em><em>[</em><em>[</em><a class="reference internal" href="#queuinx.utils.RaggedCarry" title="queuinx.utils.RaggedCarry"><em>RaggedCarry</em></a><em>, </em><em>Array</em><em> | </em><em>ndarray</em><em> | </em><em>bool</em><em> | </em><em>number</em><em> | </em><em>Iterable</em><em>[</em><em>Array</em><em> | </em><em>ndarray</em><em> | </em><em>bool</em><em> | </em><em>number</em><em> | </em><em>Iterable</em><em>[</em><em>ArrayTree</em><em>] </em><em>| </em><em>Mapping</em><em>[</em><em>Any</em><em>, </em><em>ArrayTree</em><em>]</em><em>] </em><em>| </em><em>Mapping</em><em>[</em><em>Any</em><em>, </em><em>Array</em><em> | </em><em>ndarray</em><em> | </em><em>bool</em><em> | </em><em>number</em><em> | </em><em>Iterable</em><em>[</em><em>ArrayTree</em><em>] </em><em>| </em><em>Mapping</em><em>[</em><em>Any</em><em>, </em><em>ArrayTree</em><em>]</em><em>]</em><em>]</em><em>, </em><em>Tuple</em><em>[</em><a class="reference internal" href="#queuinx.utils.RaggedCarry" title="queuinx.utils.RaggedCarry"><em>RaggedCarry</em></a><em>, </em><em>Array</em><em> | </em><em>ndarray</em><em> | </em><em>bool</em><em> | </em><em>number</em><em> | </em><em>Iterable</em><em>[</em><em>Array</em><em> | </em><em>ndarray</em><em> | </em><em>bool</em><em> | </em><em>number</em><em> | </em><em>Iterable</em><em>[</em><em>ArrayTree</em><em>] </em><em>| </em><em>Mapping</em><em>[</em><em>Any</em><em>, </em><em>ArrayTree</em><em>]</em><em>] </em><em>| </em><em>Mapping</em><em>[</em><em>Any</em><em>, </em><em>Array</em><em> | </em><em>ndarray</em><em> | </em><em>bool</em><em> | </em><em>number</em><em> | </em><em>Iterable</em><em>[</em><em>ArrayTree</em><em>] </em><em>| </em><em>Mapping</em><em>[</em><em>Any</em><em>, </em><em>ArrayTree</em><em>]</em><em>]</em><em>]</em><em>]</em>) – function implementing scan like operation over the queues along a flow</p></li>
+<li><p><strong>update_queue_fn</strong> (<em>Callable</em><em>[</em><em>[</em><em>Array</em><em> | </em><em>ndarray</em><em> | </em><em>bool</em><em> | </em><em>number</em><em> | </em><em>Iterable</em><em>[</em><em>Array</em><em> | </em><em>ndarray</em><em> | </em><em>bool</em><em> | </em><em>number</em><em> | </em><em>Iterable</em><em>[</em><em>ArrayTree</em><em>] </em><em>| </em><em>Mapping</em><em>[</em><em>Any</em><em>, </em><em>ArrayTree</em><em>]</em><em>] </em><em>| </em><em>Mapping</em><em>[</em><em>Any</em><em>, </em><em>Array</em><em> | </em><em>ndarray</em><em> | </em><em>bool</em><em> | </em><em>number</em><em> | </em><em>Iterable</em><em>[</em><em>ArrayTree</em><em>] </em><em>| </em><em>Mapping</em><em>[</em><em>Any</em><em>, </em><em>ArrayTree</em><em>]</em><em>]</em><em>, </em><em>Array</em><em> | </em><em>ndarray</em><em> | </em><em>bool</em><em> | </em><em>number</em><em> | </em><em>Iterable</em><em>[</em><em>Array</em><em> | </em><em>ndarray</em><em> | </em><em>bool</em><em> | </em><em>number</em><em> | </em><em>Iterable</em><em>[</em><em>ArrayTree</em><em>] </em><em>| </em><em>Mapping</em><em>[</em><em>Any</em><em>, </em><em>ArrayTree</em><em>]</em><em>] </em><em>| </em><em>Mapping</em><em>[</em><em>Any</em><em>, </em><em>Array</em><em> | </em><em>ndarray</em><em> | </em><em>bool</em><em> | </em><em>number</em><em> | </em><em>Iterable</em><em>[</em><em>ArrayTree</em><em>] </em><em>| </em><em>Mapping</em><em>[</em><em>Any</em><em>, </em><em>ArrayTree</em><em>]</em><em>]</em><em>, </em><em>Array</em><em>, </em><em>Array</em><em>]</em><em>, </em><em>Array</em><em> | </em><em>ndarray</em><em> | </em><em>bool</em><em> | </em><em>number</em><em> | </em><em>Iterable</em><em>[</em><em>Array</em><em> | </em><em>ndarray</em><em> | </em><em>bool</em><em> | </em><em>number</em><em> | </em><em>Iterable</em><em>[</em><em>ArrayTree</em><em>] </em><em>| </em><em>Mapping</em><em>[</em><em>Any</em><em>, </em><em>ArrayTree</em><em>]</em><em>] </em><em>| </em><em>Mapping</em><em>[</em><em>Any</em><em>, </em><em>Array</em><em> | </em><em>ndarray</em><em> | </em><em>bool</em><em> | </em><em>number</em><em> | </em><em>Iterable</em><em>[</em><em>ArrayTree</em><em>] </em><em>| </em><em>Mapping</em><em>[</em><em>Any</em><em>, </em><em>ArrayTree</em><em>]</em><em>]</em><em>]</em>) – function used to update the queues</p></li>
 <li><p><strong>reducers</strong> (<em>Any</em>) – A tree of callable used to reduce the flows</p></li>
 </ul>
 </dd>
@@ -359,8 +435,8 @@ on <a class="reference internal" href="#queuinx.Network" title="queuinx.Network"
 <dd><dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>rho</strong> (<em>Array</em><em> | </em><em>ndarray</em><em> | </em><em>bool_</em><em> | </em><em>number</em>) – System utilization</p></li>
-<li><p><strong>b</strong> (<em>Array</em><em> | </em><em>ndarray</em><em> | </em><em>bool_</em><em> | </em><em>number</em>) – buffer size</p></li>
+<li><p><strong>rho</strong> (<em>Array</em><em> | </em><em>ndarray</em><em> | </em><em>bool</em><em> | </em><em>number</em>) – System utilization</p></li>
+<li><p><strong>b</strong> (<em>Array</em><em> | </em><em>ndarray</em><em> | </em><em>bool</em><em> | </em><em>number</em>) – buffer size</p></li>
 <li><p><strong>buffer_upper_bound</strong> (<em>int</em>) – Statically known upper bound on the buffer.</p></li>
 </ul>
 </dd>
@@ -388,9 +464,9 @@ on <a class="reference internal" href="#queuinx.Network" title="queuinx.Network"
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>a</strong> (<em>Array</em><em> | </em><em>ndarray</em><em> | </em><em>bool_</em><em> | </em><em>number</em>) – Arrival rate</p></li>
-<li><p><strong>mu</strong> (<em>Array</em><em> | </em><em>ndarray</em><em> | </em><em>bool_</em><em> | </em><em>number</em>) – Service rate</p></li>
-<li><p><strong>b</strong> (<em>Array</em><em> | </em><em>ndarray</em><em> | </em><em>bool_</em><em> | </em><em>number</em>) – buffer</p></li>
+<li><p><strong>a</strong> (<em>Array</em><em> | </em><em>ndarray</em><em> | </em><em>bool</em><em> | </em><em>number</em>) – Arrival rate</p></li>
+<li><p><strong>mu</strong> (<em>Array</em><em> | </em><em>ndarray</em><em> | </em><em>bool</em><em> | </em><em>number</em>) – Service rate</p></li>
+<li><p><strong>b</strong> (<em>Array</em><em> | </em><em>ndarray</em><em> | </em><em>bool</em><em> | </em><em>number</em>) – buffer</p></li>
 <li><p><strong>buffer_upper_bound</strong> (<em>int</em>) – Static integer bounding all-buffers</p></li>
 </ul>
 </dd>
@@ -414,8 +490,8 @@ This includes both waiting and service time.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>a</strong> (<em>Array</em><em> | </em><em>ndarray</em><em> | </em><em>bool_</em><em> | </em><em>number</em>) – Arrival rate</p></li>
-<li><p><strong>mu</strong> (<em>Array</em><em> | </em><em>ndarray</em><em> | </em><em>bool_</em><em> | </em><em>number</em>) – Service rate</p></li>
+<li><p><strong>a</strong> (<em>Array</em><em> | </em><em>ndarray</em><em> | </em><em>bool</em><em> | </em><em>number</em>) – Arrival rate</p></li>
+<li><p><strong>mu</strong> (<em>Array</em><em> | </em><em>ndarray</em><em> | </em><em>bool</em><em> | </em><em>number</em>) – Service rate</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
@@ -426,7 +502,7 @@ This includes both waiting and service time.</p>
 </dd>
 </dl>
 <aside class="footnote-list brackets">
-<aside class="footnote brackets" id="id2" role="note">
+<aside class="footnote brackets" id="id2" role="doc-footnote">
 <span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id1">1</a><span class="fn-bracket">]</span></span>
 <p>Harrison, P. G. (1993). “Response time distributions in queueing network models”. Performance Evaluation of Computer and Communication Systems. Lecture Notes in Computer Science. Vol. 729. pp. 147–164.</p>
 </aside>
@@ -452,9 +528,9 @@ to changing shapes.</p>
 <dd><dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>carry</strong> (<em>Array</em><em> | </em><em>ndarray</em><em> | </em><em>bool_</em><em> | </em><em>number</em><em> | </em><em>Iterable</em><em>[</em><em>Array</em><em> | </em><em>ndarray</em><em> | </em><em>bool_</em><em> | </em><em>number</em><em> | </em><em>Iterable</em><em>[</em><em>ArrayTree</em><em>] </em><em>| </em><em>Mapping</em><em>[</em><em>Any</em><em>, </em><em>ArrayTree</em><em>]</em><em>] </em><em>| </em><em>Mapping</em><em>[</em><em>Any</em><em>, </em><em>Array</em><em> | </em><em>ndarray</em><em> | </em><em>bool_</em><em> | </em><em>number</em><em> | </em><em>Iterable</em><em>[</em><em>ArrayTree</em><em>] </em><em>| </em><em>Mapping</em><em>[</em><em>Any</em><em>, </em><em>ArrayTree</em><em>]</em><em>]</em>) – </p></li>
-<li><p><strong>step</strong> (<em>Array</em><em> | </em><em>ndarray</em><em> | </em><em>bool_</em><em> | </em><em>number</em>) – </p></li>
-<li><p><strong>n_step</strong> (<em>Array</em><em> | </em><em>ndarray</em><em> | </em><em>bool_</em><em> | </em><em>number</em>) – </p></li>
+<li><p><strong>carry</strong> (<em>Array</em><em> | </em><em>ndarray</em><em> | </em><em>bool</em><em> | </em><em>number</em><em> | </em><em>Iterable</em><em>[</em><em>Array</em><em> | </em><em>ndarray</em><em> | </em><em>bool</em><em> | </em><em>number</em><em> | </em><em>Iterable</em><em>[</em><em>ArrayTree</em><em>] </em><em>| </em><em>Mapping</em><em>[</em><em>Any</em><em>, </em><em>ArrayTree</em><em>]</em><em>] </em><em>| </em><em>Mapping</em><em>[</em><em>Any</em><em>, </em><em>Array</em><em> | </em><em>ndarray</em><em> | </em><em>bool</em><em> | </em><em>number</em><em> | </em><em>Iterable</em><em>[</em><em>ArrayTree</em><em>] </em><em>| </em><em>Mapping</em><em>[</em><em>Any</em><em>, </em><em>ArrayTree</em><em>]</em><em>]</em>) – </p></li>
+<li><p><strong>step</strong> (<em>Array</em><em> | </em><em>ndarray</em><em> | </em><em>bool</em><em> | </em><em>number</em>) – </p></li>
+<li><p><strong>n_step</strong> (<em>Array</em><em> | </em><em>ndarray</em><em> | </em><em>bool</em><em> | </em><em>number</em>) – </p></li>
 </ul>
 </dd>
 <dt class="field-even">Return type<span class="colon">:</span></dt>
@@ -462,6 +538,21 @@ to changing shapes.</p>
 </dd>
 </dl>
 </dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="queuinx.utils.RaggedCarry.items">
+<span class="sig-name descname"><span class="pre">items</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">a</span> <span class="pre">set-like</span> <span class="pre">object</span> <span class="pre">providing</span> <span class="pre">a</span> <span class="pre">view</span> <span class="pre">on</span> <span class="pre">D's</span> <span class="pre">items</span></span></span><a class="headerlink" href="#queuinx.utils.RaggedCarry.items" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="queuinx.utils.RaggedCarry.keys">
+<span class="sig-name descname"><span class="pre">keys</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">a</span> <span class="pre">set-like</span> <span class="pre">object</span> <span class="pre">providing</span> <span class="pre">a</span> <span class="pre">view</span> <span class="pre">on</span> <span class="pre">D's</span> <span class="pre">keys</span></span></span><a class="headerlink" href="#queuinx.utils.RaggedCarry.keys" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="queuinx.utils.RaggedCarry.values">
+<span class="sig-name descname"><span class="pre">values</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">an</span> <span class="pre">object</span> <span class="pre">providing</span> <span class="pre">a</span> <span class="pre">view</span> <span class="pre">on</span> <span class="pre">D's</span> <span class="pre">values</span></span></span><a class="headerlink" href="#queuinx.utils.RaggedCarry.values" title="Link to this definition"></a></dt>
+<dd></dd></dl>
 
 </dd></dl>
 
@@ -561,9 +652,9 @@ to changing shapes.</p>
 <dd><dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>rate</strong> (<em>Array</em><em> | </em><em>ndarray</em><em> | </em><em>bool_</em><em> | </em><em>number</em>) – </p></li>
-<li><p><strong>plen</strong> (<em>Array</em><em> | </em><em>ndarray</em><em> | </em><em>bool_</em><em> | </em><em>number</em>) – </p></li>
-<li><p><strong>weighted_plen</strong> (<em>Array</em><em> | </em><em>ndarray</em><em> | </em><em>bool_</em><em> | </em><em>number</em><em> | </em><em>None</em>) – </p></li>
+<li><p><strong>rate</strong> (<em>Array</em><em> | </em><em>ndarray</em><em> | </em><em>bool</em><em> | </em><em>number</em>) – </p></li>
+<li><p><strong>plen</strong> (<em>Array</em><em> | </em><em>ndarray</em><em> | </em><em>bool</em><em> | </em><em>number</em>) – </p></li>
+<li><p><strong>weighted_plen</strong> (<em>Array</em><em> | </em><em>ndarray</em><em> | </em><em>bool</em><em> | </em><em>number</em><em> | </em><em>None</em>) – </p></li>
 </ul>
 </dd>
 <dt class="field-even">Return type<span class="colon">:</span></dt>
@@ -571,6 +662,21 @@ to changing shapes.</p>
 </dd>
 </dl>
 </dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="queuinx.experimental.models.PacketFlow.items">
+<span class="sig-name descname"><span class="pre">items</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">a</span> <span class="pre">set-like</span> <span class="pre">object</span> <span class="pre">providing</span> <span class="pre">a</span> <span class="pre">view</span> <span class="pre">on</span> <span class="pre">D's</span> <span class="pre">items</span></span></span><a class="headerlink" href="#queuinx.experimental.models.PacketFlow.items" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="queuinx.experimental.models.PacketFlow.keys">
+<span class="sig-name descname"><span class="pre">keys</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">a</span> <span class="pre">set-like</span> <span class="pre">object</span> <span class="pre">providing</span> <span class="pre">a</span> <span class="pre">view</span> <span class="pre">on</span> <span class="pre">D's</span> <span class="pre">keys</span></span></span><a class="headerlink" href="#queuinx.experimental.models.PacketFlow.keys" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="queuinx.experimental.models.PacketFlow.values">
+<span class="sig-name descname"><span class="pre">values</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">an</span> <span class="pre">object</span> <span class="pre">providing</span> <span class="pre">a</span> <span class="pre">view</span> <span class="pre">on</span> <span class="pre">D's</span> <span class="pre">values</span></span></span><a class="headerlink" href="#queuinx.experimental.models.PacketFlow.values" title="Link to this definition"></a></dt>
+<dd></dd></dl>
 
 </dd></dl>
 
@@ -584,14 +690,14 @@ to changing shapes.</p>
 <dd><dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>b</strong> (<em>Array</em><em> | </em><em>ndarray</em><em> | </em><em>bool_</em><em> | </em><em>number</em>) – </p></li>
-<li><p><strong>service_rate</strong> (<em>Array</em><em> | </em><em>ndarray</em><em> | </em><em>bool_</em><em> | </em><em>number</em>) – </p></li>
-<li><p><strong>arrivals</strong> (<em>Array</em><em> | </em><em>ndarray</em><em> | </em><em>bool_</em><em> | </em><em>number</em>) – </p></li>
-<li><p><strong>pasprob</strong> (<em>Array</em><em> | </em><em>ndarray</em><em> | </em><em>bool_</em><em> | </em><em>number</em>) – </p></li>
-<li><p><strong>speed</strong> (<em>Array</em><em> | </em><em>ndarray</em><em> | </em><em>bool_</em><em> | </em><em>number</em>) – </p></li>
-<li><p><strong>w</strong> (<em>Array</em><em> | </em><em>ndarray</em><em> | </em><em>bool_</em><em> | </em><em>number</em>) – </p></li>
-<li><p><strong>priority</strong> (<em>Array</em><em> | </em><em>ndarray</em><em> | </em><em>bool_</em><em> | </em><em>number</em>) – </p></li>
-<li><p><strong>bit_buffer</strong> (<em>Array</em><em> | </em><em>ndarray</em><em> | </em><em>bool_</em><em> | </em><em>number</em>) – </p></li>
+<li><p><strong>b</strong> (<em>Array</em><em> | </em><em>ndarray</em><em> | </em><em>bool</em><em> | </em><em>number</em>) – </p></li>
+<li><p><strong>service_rate</strong> (<em>Array</em><em> | </em><em>ndarray</em><em> | </em><em>bool</em><em> | </em><em>number</em>) – </p></li>
+<li><p><strong>arrivals</strong> (<em>Array</em><em> | </em><em>ndarray</em><em> | </em><em>bool</em><em> | </em><em>number</em>) – </p></li>
+<li><p><strong>pasprob</strong> (<em>Array</em><em> | </em><em>ndarray</em><em> | </em><em>bool</em><em> | </em><em>number</em>) – </p></li>
+<li><p><strong>speed</strong> (<em>Array</em><em> | </em><em>ndarray</em><em> | </em><em>bool</em><em> | </em><em>number</em>) – </p></li>
+<li><p><strong>w</strong> (<em>Array</em><em> | </em><em>ndarray</em><em> | </em><em>bool</em><em> | </em><em>number</em>) – </p></li>
+<li><p><strong>priority</strong> (<em>Array</em><em> | </em><em>ndarray</em><em> | </em><em>bool</em><em> | </em><em>number</em>) – </p></li>
+<li><p><strong>bit_buffer</strong> (<em>Array</em><em> | </em><em>ndarray</em><em> | </em><em>bool</em><em> | </em><em>number</em>) – </p></li>
 <li><p><strong>policy</strong> (<em>int</em>) – </p></li>
 </ul>
 </dd>
@@ -600,6 +706,21 @@ to changing shapes.</p>
 </dd>
 </dl>
 </dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="queuinx.experimental.models.PacketQueue.items">
+<span class="sig-name descname"><span class="pre">items</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">a</span> <span class="pre">set-like</span> <span class="pre">object</span> <span class="pre">providing</span> <span class="pre">a</span> <span class="pre">view</span> <span class="pre">on</span> <span class="pre">D's</span> <span class="pre">items</span></span></span><a class="headerlink" href="#queuinx.experimental.models.PacketQueue.items" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="queuinx.experimental.models.PacketQueue.keys">
+<span class="sig-name descname"><span class="pre">keys</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">a</span> <span class="pre">set-like</span> <span class="pre">object</span> <span class="pre">providing</span> <span class="pre">a</span> <span class="pre">view</span> <span class="pre">on</span> <span class="pre">D's</span> <span class="pre">keys</span></span></span><a class="headerlink" href="#queuinx.experimental.models.PacketQueue.keys" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="queuinx.experimental.models.PacketQueue.values">
+<span class="sig-name descname"><span class="pre">values</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">an</span> <span class="pre">object</span> <span class="pre">providing</span> <span class="pre">a</span> <span class="pre">view</span> <span class="pre">on</span> <span class="pre">D's</span> <span class="pre">values</span></span></span><a class="headerlink" href="#queuinx.experimental.models.PacketQueue.values" title="Link to this definition"></a></dt>
+<dd></dd></dl>
 
 </dd></dl>
 
@@ -658,7 +779,7 @@ to changing shapes.</p>
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2024, Krzysztof Rusek.</p>
+    <p>&#169; Copyright 2025, Krzysztof Rusek.</p>
   </div>
 
   Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
