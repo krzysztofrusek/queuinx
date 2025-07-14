@@ -102,7 +102,7 @@ def Readout_mm1() -> QueuingModelStep:
             var = jnp.where(a < mu, q.variance(), float('inf'))
             return delay, var
 
-        m, v = delay_jitter_fn(queue.arrivals, queue.speed)
+        m, v = delay_jitter_fn(queue.arrivals, queue.service_rate)
         qos = flow.replace(loss=flow.loss * queue.pasprob,
                            delay=flow.delay + m, jitter=flow.jitter + v)
         return qos, flow
