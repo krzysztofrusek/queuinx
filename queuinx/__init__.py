@@ -10,4 +10,4 @@ from queuinx.models import RouteNetStep
 from queuinx.models import flow_scaner
 from queuinx.network import Network
 
-__version__ = "0.0.3"
+__version__ = "0.0.4dev"
